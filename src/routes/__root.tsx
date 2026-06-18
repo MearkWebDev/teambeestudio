@@ -84,6 +84,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Team Bee Creative Studios" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Team Bee Creative Studios — Wedding Photography & Cinematic Films, Coimbatore" },
+      { name: "twitter:title", content: "Team Bee Creative Studios — Wedding Photography & Cinematic Films, Coimbatore" },
+      { property: "og:description", content: "Award-worthy wedding photography and cinematic films in Coimbatore. Candid storytelling, pre-wedding shoots and 45-day delivery by Team Bee Creative Studios." },
+      { name: "twitter:description", content: "Award-worthy wedding photography and cinematic films in Coimbatore. Candid storytelling, pre-wedding shoots and 45-day delivery by Team Bee Creative Studios." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2157087a-8294-468a-b0b9-b3912cd5b525/id-preview-f6e4cfd6--3f940b33-f26f-4d67-a049-d5aebf4d5e66.lovable.app-1781780004757.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2157087a-8294-468a-b0b9-b3912cd5b525/id-preview-f6e4cfd6--3f940b33-f26f-4d67-a049-d5aebf4d5e66.lovable.app-1781780004757.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
