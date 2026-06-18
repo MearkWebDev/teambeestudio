@@ -2,28 +2,33 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { SITE, NAV, IMG } from "@/lib/site";
 
+const SERVICES = [
+  "Wedding Photography",
+  "Wedding Films",
+  "Candid Photography",
+  "Engagement Photography",
+  "Maternity Photography",
+  "Destination Weddings",
+];
+
 export function Footer() {
   return (
     <footer className="bg-ink border-t border-border mt-32">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-10 py-20 grid lg:grid-cols-4 gap-12">
         <div className="lg:col-span-1">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="h-14 w-14 rounded-full bg-ivory flex items-center justify-center overflow-hidden">
-              <img src={IMG.logo} alt="" className="h-11 w-11 object-contain" />
-            </div>
-            <div>
-              <div className="font-serif text-xl">Team Bee</div>
-              <div className="text-[10px] tracking-luxe uppercase text-gold">Créative Studios</div>
-            </div>
+          <div className="h-24 w-36 rounded-2xl bg-ivory flex items-center justify-center overflow-hidden shadow-gold mb-6">
+            <img src={IMG.logo} alt="Team Bee Creative Studios" className="h-20 w-auto object-contain" />
           </div>
-          <p className="font-script text-2xl text-gold mb-2">{SITE.tagline}</p>
-          <p className="text-xs text-muted-foreground italic">{SITE.taglineEn}</p>
+          <p className="text-sm text-ivory/70 leading-relaxed">
+            Team Bee Creative Studios specializes in wedding photography, cinematic wedding films, candid storytelling, and destination wedding coverage across Tamil Nadu and India. We capture timeless moments and transform them into unforgettable visual stories.
+          </p>
+          <p className="font-script text-2xl text-gold mt-5">{SITE.tagline}</p>
         </div>
 
         <div>
-          <h4 className="text-[11px] tracking-luxe uppercase text-gold mb-5">Explore</h4>
+          <h4 className="text-[11px] tracking-luxe uppercase text-gold mb-5">Quick Links</h4>
           <ul className="space-y-3">
-            {NAV.slice(0, 5).map((n) => (
+            {NAV.map((n) => (
               <li key={n.to}>
                 <Link to={n.to} className="text-sm text-ivory/70 hover:text-gold transition-colors">{n.label}</Link>
               </li>
@@ -34,16 +39,12 @@ export function Footer() {
         <div>
           <h4 className="text-[11px] tracking-luxe uppercase text-gold mb-5">Services</h4>
           <ul className="space-y-3 text-sm text-ivory/70">
-            <li>Wedding Photography</li>
-            <li>Cinematic Wedding Films</li>
-            <li>Pre-Wedding Stories</li>
-            <li>Engagement Coverage</li>
-            <li>Maternity Portraits</li>
+            {SERVICES.map((s) => <li key={s}>{s}</li>)}
           </ul>
         </div>
 
         <div>
-          <h4 className="text-[11px] tracking-luxe uppercase text-gold mb-5">Studio</h4>
+          <h4 className="text-[11px] tracking-luxe uppercase text-gold mb-5">Contact</h4>
           <ul className="space-y-3 text-sm text-ivory/70">
             <li className="flex gap-2"><MapPin className="h-4 w-4 text-gold mt-0.5 shrink-0" /><span>{SITE.address.line1}, {SITE.address.line2}, {SITE.address.region}</span></li>
             <li><a href={`tel:${SITE.phoneTel}`} className="flex gap-2 hover:text-gold"><Phone className="h-4 w-4 text-gold" />{SITE.phone}</a></li>
@@ -58,8 +59,8 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-[1500px] px-6 lg:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} Team Bee Creative Studios. All rights reserved.</div>
-          <div className="tracking-wider-2 uppercase">Coimbatore · Tamil Nadu · India</div>
+          <div>© {new Date().getFullYear()} Team Bee Creative Studios. All Rights Reserved.</div>
+          <div className="tracking-wider-2 uppercase">Designed by <span className="text-gold">Meark Enterprise Pvt Ltd</span></div>
         </div>
       </div>
     </footer>
