@@ -25,13 +25,9 @@ export function Header() {
       )}
     >
       <div className="mx-auto max-w-[1500px] px-6 lg:px-10 flex items-center justify-between h-20">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="h-12 w-12 rounded-full bg-ivory flex items-center justify-center overflow-hidden shadow-gold">
-            <img src={IMG.logo} alt="Team Bee Creative Studios logo" className="h-10 w-10 object-contain" />
-          </div>
-          <div className="hidden sm:block leading-tight">
-            <div className="font-serif text-lg text-ivory">Team Bee</div>
-            <div className="text-[10px] tracking-luxe uppercase text-gold">Créative Studios</div>
+        <Link to="/" className="flex items-center gap-3 group" aria-label="Team Bee Creative Studios — Home">
+          <div className="h-14 w-20 rounded-xl bg-ivory flex items-center justify-center overflow-hidden shadow-gold">
+            <img src={IMG.logo} alt="Team Bee Creative Studios" className="h-11 w-auto object-contain" />
           </div>
         </Link>
 
