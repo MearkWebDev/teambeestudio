@@ -28,7 +28,7 @@ export default function ServicesPage() {
 
   return (
     <SiteLayout>
-      <PageHero eyebrow="Services" title="A Complete Wedding Experience" subtitle="From the first glance to the final celebration — every part of your story, beautifully covered." image={WEDDING[1]} />
+      <PageHero eyebrow="Services" title="A Complete Wedding Experience" subtitle="From the first glance to the final celebration — every part of your story, beautifully covered." image={WEDDING[1]} breadcrumb="Services" />
 
       <section className="py-24 px-6">
         <div className="mx-auto max-w-[1400px] grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

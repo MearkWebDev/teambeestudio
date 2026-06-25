@@ -48,7 +48,7 @@ export default function ContactPage() {
 
   return (
     <SiteLayout>
-      <PageHero eyebrow="Let's Begin Your Story" title="Get In Touch" subtitle="A short conversation is all it takes. Tell us about your celebration and we'll respond within 24 hours." image={WEDDING[4]} />
+      <PageHero eyebrow="Let's Begin Your Story" title="Get In Touch" subtitle="A short conversation is all it takes. Tell us about your celebration and we'll respond within 24 hours." image={WEDDING[4]} breadcrumb="Contact" />
 
       <section className="py-24 px-6">
         <div className="mx-auto max-w-[1300px] grid lg:grid-cols-5 gap-12">

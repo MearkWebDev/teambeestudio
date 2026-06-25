@@ -1,37 +1,41 @@
 import { useSeo } from "@/lib/useSeo";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
+import { LazyVideo } from "@/components/site/LazyVideo";
 import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, TESTIMONIALS, PHOTO_CATEGORIES } from "@/lib/site";
+
+const AZ = "https://teambee.blob.core.windows.net";
 
 const slides = [
   {
-    image: WEDDING[0],
+    image: `${AZ}/wedding/ARU08627.jpg`,
     eyebrow: "Wedding Photography · Coimbatore",
-    title: "Capturing Moments,\nCreating Memories",
-    subtitle: "Best wedding photographer in Coimbatore — cinematic films, candid storytelling, 45-day delivery.",
-    cta1: { label: "Book Your Wedding", to: "/contact?event=Wedding" },
-    cta2: { label: "Explore Photography", to: "/photography" },
+    title: "Every Wedding Has A Beautiful Story.\nWe Capture It Forever.",
+    subtitle: "Luxury Wedding Photography & Cinematic Films in Coimbatore.",
+    cta1: { label: "View Portfolio", to: "/photography" },
+    cta2: { label: "Book Your Wedding", to: "/contact?event=Wedding" },
   },
   {
-    image: PRE_WEDDING[0],
-    eyebrow: "Pre-Wedding Stories",
-    title: "Your Love Story\nDeserves A Beautiful Frame",
-    subtitle: "Romantic, story-driven shoots designed around you as a couple.",
-    cta1: { label: "Book Pre Wedding", to: "/contact?event=Pre+Wedding" },
-    cta2: { label: "Watch Films", to: "/films" },
-  },
-  {
-    image: DESTINATION[0],
+    image: `${AZ}/destination-wedding/ARU00954%20CC.jpg`,
     eyebrow: "Destination Weddings",
-    title: "Weddings Beyond\nBorders & Beautiful Skies",
-    subtitle: "From Nilgiris hill stations to coastal palaces — your destination, our craft.",
-    cta1: { label: "Plan Destination Wedding", to: "/contact?event=Destination" },
-    cta2: { label: "Our Approach", to: "/about" },
+    title: "Where Love Meets\nBeautiful Destinations",
+    subtitle: "Destination Wedding Photography crafted with timeless elegance and cinematic storytelling.",
+    cta1: { label: "Explore Destination Weddings", to: "/photography?cat=destination" },
+    cta2: { label: "Get a Quote", to: "/contact?event=Destination" },
+  },
+  {
+    image: `${AZ}/pre-wedding/dsc08531.jpg`,
+    eyebrow: "Pre Wedding Stories",
+    title: "Before Forever Begins,\nLet's Capture Your Story",
+    subtitle: "Creative Pre-Wedding Photography with natural emotions and cinematic frames.",
+    cta1: { label: "Explore Pre-Wedding", to: "/photography?cat=pre-wedding" },
+    cta2: { label: "Book Your Shoot", to: "/contact?event=Pre+Wedding" },
   },
 ];
+
 
 const services = [
   { icon: Camera, t: "Wedding Photography" },
@@ -90,7 +94,14 @@ export default function HomePage() {
       <section className="relative h-screen min-h-[680px] w-full overflow-hidden">
         {slides.map((s, i) => (
           <div key={i} className="absolute inset-0 transition-opacity" style={{ opacity: i === active ? 1 : 0, transitionDuration: "1500ms" }} aria-hidden={i !== active}>
-            <img src={s.image} alt={s.title} className="absolute inset-0 h-full w-full object-cover kenburns" />
+            <img
+              src={s.image}
+              alt={s.title}
+              {...(i === 0
+                ? { fetchPriority: "high" as const, loading: "eager" as const, decoding: "sync" as const }
+                : { loading: "lazy" as const, decoding: "async" as const })}
+              className="absolute inset-0 h-full w-full object-cover kenburns"
+            />
             <div className="absolute inset-0 bg-overlay" />
             <div className="absolute inset-0 bg-vignette" />
           </div>
@@ -202,37 +213,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED FILMS — auto playing muted */}
+      {/* FEATURED FILMS — latest 3, premium cinematic layout */}
       <section className="relative py-32 px-6 border-t border-border bg-card/30">
         <div className="mx-auto max-w-[1500px]">
           <div className="text-center mb-16">
             <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Featured Films</div>
             <h2 className="font-serif text-4xl md:text-6xl">A photograph captures a moment.<br /><em className="text-gold">A film brings it back to life.</em></h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FILMS.slice(0, 6).map((f, i) => (
-              <motion.div key={f.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }} className="group relative overflow-hidden aspect-video bg-ink">
-                <video src={f.src} poster={f.poster} muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()} onMouseLeave={(e) => { const v = e.currentTarget as HTMLVideoElement; v.pause(); v.currentTime = 0; }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 grid place-items-center pointer-events-none opacity-90 group-hover:opacity-0 transition-opacity">
-                  <div className="h-14 w-14 rounded-full bg-gold/90 grid place-items-center shadow-gold">
-                    <Play className="h-5 w-5 text-ink fill-ink ml-0.5" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {FILMS.slice(0, 3).map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="group flex flex-col"
+              >
+                <Link to="/films" className="block">
+                  <div className="relative w-full aspect-[16/10] overflow-hidden bg-ink mb-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
+                    <img
+                      src={f.poster}
+                      alt={f.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 grid place-items-center">
+                      <div className="h-20 w-20 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
+                        <Play className="h-7 w-7 text-ink fill-ink ml-1" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-5 left-5 text-[10px] tracking-luxe uppercase text-gold">{f.category}</div>
                   </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none">
-                  <div className="text-[10px] tracking-luxe uppercase text-gold mb-1">{f.category}</div>
-                  <h3 className="font-serif text-lg text-ivory">{f.title}</h3>
-                </div>
+                  <h3 className="font-serif text-2xl md:text-3xl text-ivory mb-3 group-hover:text-gold transition-colors">{f.title}</h3>
+                  <p className="text-sm text-ivory/65 leading-relaxed mb-5">
+                    A cinematic {f.category.toLowerCase()} film by Team Bee — crafted with emotion, music and timeless storytelling.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-gold text-[11px] uppercase tracking-luxe group-hover:gap-3 transition-all">
+                    Watch Film <ArrowRight className="h-3 w-3" />
+                  </span>
+                </Link>
               </motion.div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link to="/films" className="inline-flex items-center px-8 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
-              Watch All Films
+          <div className="text-center mt-16">
+            <Link to="/films" className="inline-flex items-center gap-3 px-10 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
+              View All Films <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </section>
+
 
       {/* SERVICES PREVIEW */}
       <section className="relative py-32 px-6 border-t border-border">
@@ -267,8 +300,8 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-6">
             {TESTIMONIALS.map((t) => (
               <div key={t.name} className="relative bg-background/40 backdrop-blur-xl border border-border p-3 group">
-                <div className="relative aspect-video overflow-hidden">
-                  <video src={t.src} poster={t.poster} controls preload="metadata" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="relative aspect-video overflow-hidden bg-ink">
+                  <TestimonialVideo src={t.src} poster={t.poster} />
                 </div>
                 <div className="flex items-center justify-between p-5">
                   <div>
@@ -332,3 +365,40 @@ export default function HomePage() {
     </SiteLayout>
   );
 }
+
+function TestimonialVideo({ src, poster }: { src: string; poster: string }) {
+  const [play, setPlay] = useState(false);
+  const ref = useRef<HTMLVideoElement>(null);
+  return (
+    <>
+      {!play ? (
+        <button
+          type="button"
+          onClick={() => setPlay(true)}
+          className="absolute inset-0 group"
+          aria-label="Play testimonial"
+        >
+          <img src={poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-ink/30 group-hover:bg-ink/20 transition-colors" />
+          <div className="absolute inset-0 grid place-items-center">
+            <div className="h-16 w-16 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
+              <Play className="h-6 w-6 text-ink fill-ink ml-0.5" />
+            </div>
+          </div>
+        </button>
+      ) : (
+        <video
+          ref={ref}
+          src={src}
+          poster={poster}
+          controls
+          autoPlay
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover bg-ink"
+        />
+      )}
+    </>
+  );
+}
+

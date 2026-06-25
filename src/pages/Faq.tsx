@@ -24,7 +24,7 @@ export default function FaqPage() {
 
   return (
     <SiteLayout>
-      <PageHero eyebrow="Questions, Answered" title="Frequently Asked" subtitle="Everything you need to know before working with Team Bee Creative Studios." image={WEDDING[3]} />
+      <PageHero eyebrow="Questions, Answered" title="Frequently Asked" subtitle="Everything you need to know before working with Team Bee Creative Studios." image={WEDDING[3]} breadcrumb="FAQ" />
       <section className="py-24 px-6">
         <div className="mx-auto max-w-3xl">
           <Accordion type="single" collapsible className="w-full">

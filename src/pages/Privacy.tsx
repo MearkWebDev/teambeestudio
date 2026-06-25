@@ -12,7 +12,7 @@ export default function PrivacyPage() {
 
   return (
     <SiteLayout>
-      <PageHero eyebrow="Legal" title="Privacy Policy" image={WEDDING[6]} />
+      <PageHero eyebrow="Legal" title="Privacy Policy" image={WEDDING[6]} breadcrumb="Privacy Policy" />
       <section className="py-24 px-6">
         <div className="mx-auto max-w-3xl space-y-8 text-ivory/80 leading-relaxed">
           <p className="text-sm text-ivory/60">Last updated: {new Date().getFullYear()}</p>

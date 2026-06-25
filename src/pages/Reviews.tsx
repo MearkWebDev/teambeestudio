@@ -52,7 +52,7 @@ export default function ReviewsPage() {
 
   return (
     <SiteLayout>
-      <PageHero eyebrow="Loved by Couples" title="Real Stories. Real Reviews." subtitle="Honest words from the families who trusted us with their most precious days." image={WEDDING[3]} />
+      <PageHero eyebrow="Loved by Couples" title="Real Stories. Real Reviews." subtitle="Honest words from the families who trusted us with their most precious days." image={WEDDING[3]} breadcrumb="Reviews" />
 
       {/* COUNTERS */}
       <section className="py-20 px-6 border-b border-border bg-card/30">
