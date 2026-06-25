@@ -300,8 +300,8 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-6">
             {TESTIMONIALS.map((t) => (
               <div key={t.name} className="relative bg-background/40 backdrop-blur-xl border border-border p-3 group">
-                <div className="relative aspect-video overflow-hidden">
-                  <video src={t.src} poster={t.poster} controls preload="metadata" className="absolute inset-0 h-full w-full object-cover" />
+                <div className="relative aspect-video overflow-hidden bg-ink">
+                  <TestimonialVideo src={t.src} poster={t.poster} />
                 </div>
                 <div className="flex items-center justify-between p-5">
                   <div>
