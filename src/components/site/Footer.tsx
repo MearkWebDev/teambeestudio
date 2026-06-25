@@ -27,7 +27,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1500px] px-6 lg:px-10 py-20 grid lg:grid-cols-4 gap-12">
         {/* Column 1 — Brand */}
         <div>
-          <img src={IMG.logo} alt="Team Bee Creative Studios" className="h-20 w-auto object-contain mb-6" loading="lazy" />
+          <img src={IMG.logoWhite} alt="Team Bee Creative Studios" className="h-20 w-auto object-contain mb-6" loading="lazy" />
           <p className="text-sm text-ivory/70 leading-relaxed">
             Established 2009 in Coimbatore. Cinematic wedding photography and films for couples across Tamil Nadu and beyond — every story captured with elegance, authenticity and a 45-day delivery promise.
           </p>
