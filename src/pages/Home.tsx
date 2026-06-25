@@ -365,3 +365,40 @@ export default function HomePage() {
     </SiteLayout>
   );
 }
+
+function TestimonialVideo({ src, poster }: { src: string; poster: string }) {
+  const [play, setPlay] = useState(false);
+  const ref = useRef<HTMLVideoElement>(null);
+  return (
+    <>
+      {!play ? (
+        <button
+          type="button"
+          onClick={() => setPlay(true)}
+          className="absolute inset-0 group"
+          aria-label="Play testimonial"
+        >
+          <img src={poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-ink/30 group-hover:bg-ink/20 transition-colors" />
+          <div className="absolute inset-0 grid place-items-center">
+            <div className="h-16 w-16 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
+              <Play className="h-6 w-6 text-ink fill-ink ml-0.5" />
+            </div>
+          </div>
+        </button>
+      ) : (
+        <video
+          ref={ref}
+          src={src}
+          poster={poster}
+          controls
+          autoPlay
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover bg-ink"
+        />
+      )}
+    </>
+  );
+}
+
