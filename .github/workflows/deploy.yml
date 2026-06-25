@@ -28,10 +28,11 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install       
+        run: npm install
 
       - name: Build
         run: npm run build
+        # No VITE_BASE env needed — base is hardcoded in vite.config.ts
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' 
+          path: './dist'
 
   deploy:
     environment:
