@@ -213,37 +213,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED FILMS — auto playing muted */}
+      {/* FEATURED FILMS — latest 3, premium cinematic layout */}
       <section className="relative py-32 px-6 border-t border-border bg-card/30">
         <div className="mx-auto max-w-[1500px]">
           <div className="text-center mb-16">
             <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Featured Films</div>
             <h2 className="font-serif text-4xl md:text-6xl">A photograph captures a moment.<br /><em className="text-gold">A film brings it back to life.</em></h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FILMS.slice(0, 6).map((f, i) => (
-              <motion.div key={f.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }} className="group relative overflow-hidden aspect-video bg-ink">
-                <video src={f.src} poster={f.poster} muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()} onMouseLeave={(e) => { const v = e.currentTarget as HTMLVideoElement; v.pause(); v.currentTime = 0; }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 grid place-items-center pointer-events-none opacity-90 group-hover:opacity-0 transition-opacity">
-                  <div className="h-14 w-14 rounded-full bg-gold/90 grid place-items-center shadow-gold">
-                    <Play className="h-5 w-5 text-ink fill-ink ml-0.5" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {FILMS.slice(0, 3).map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="group flex flex-col"
+              >
+                <Link to="/films" className="block">
+                  <div className="relative w-full aspect-[16/10] overflow-hidden bg-ink mb-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
+                    <img
+                      src={f.poster}
+                      alt={f.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 grid place-items-center">
+                      <div className="h-20 w-20 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
+                        <Play className="h-7 w-7 text-ink fill-ink ml-1" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-5 left-5 text-[10px] tracking-luxe uppercase text-gold">{f.category}</div>
                   </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none">
-                  <div className="text-[10px] tracking-luxe uppercase text-gold mb-1">{f.category}</div>
-                  <h3 className="font-serif text-lg text-ivory">{f.title}</h3>
-                </div>
+                  <h3 className="font-serif text-2xl md:text-3xl text-ivory mb-3 group-hover:text-gold transition-colors">{f.title}</h3>
+                  <p className="text-sm text-ivory/65 leading-relaxed mb-5">
+                    A cinematic {f.category.toLowerCase()} film by Team Bee — crafted with emotion, music and timeless storytelling.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-gold text-[11px] uppercase tracking-luxe group-hover:gap-3 transition-all">
+                    Watch Film <ArrowRight className="h-3 w-3" />
+                  </span>
+                </Link>
               </motion.div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link to="/films" className="inline-flex items-center px-8 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
-              Watch All Films
+          <div className="text-center mt-16">
+            <Link to="/films" className="inline-flex items-center gap-3 px-10 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
+              View All Films <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
       </section>
+
 
       {/* SERVICES PREVIEW */}
       <section className="relative py-32 px-6 border-t border-border">
