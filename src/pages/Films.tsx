@@ -1,8 +1,9 @@
 import { useSeo } from "@/lib/useSeo";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play, X } from "lucide-react";
+import { Play, X, Film as FilmIcon } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
+import { LazyVideo } from "@/components/site/LazyVideo";
 import { FILMS } from "@/lib/site";
 
 const CATEGORIES = ["All", "Wedding", "Pre Wedding", "Engagement", "Reception", "Ceremony"];
@@ -32,62 +33,94 @@ export default function FilmsPage() {
 
   return (
     <SiteLayout>
-      {/* FEATURED HERO FILM */}
-      <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden">
-        <video src={featured.src} poster={featured.poster} muted loop autoPlay playsInline className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-overlay" />
-        <div className="absolute inset-0 bg-vignette" />
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-6 pt-20">
-          <div className="text-[11px] tracking-luxe uppercase text-gold mb-6 reveal">Featured Film · {featured.category}</div>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-ivory text-balance leading-[1.05] reveal">
-            {featured.title}
-          </h1>
-          <button onClick={() => setPlaying(0)} className="mt-10 group inline-flex items-center gap-3 px-8 py-4 bg-gold text-ink text-[11px] uppercase tracking-luxe hover:bg-gold-soft transition-all">
-            <Play className="h-4 w-4 fill-ink" /> Watch The Film
-          </button>
+      {/* HERO BANNER */}
+      <PageHero
+        eyebrow="Cinematic Films"
+        title="Where Every Glance Becomes A Film"
+        subtitle="A premium gallery of wedding films, pre-wedding stories and cinematic highlights — crafted to relive forever."
+        image={featured.poster}
+        breadcrumb="Films"
+      />
+
+      {/* FEATURED FILM */}
+      <section className="py-24 px-6 border-b border-border">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="text-center mb-12">
+            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3 inline-flex items-center gap-2">
+              <FilmIcon className="h-3 w-3" /> Featured Film
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl text-ivory">{featured.title}</h2>
+          </div>
+          <motion.button
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            onClick={() => setPlaying(0)}
+            className="group relative block w-full aspect-video overflow-hidden bg-ink shadow-[0_40px_120px_-40px_rgba(0,0,0,0.8)]"
+          >
+            <img
+              src={featured.poster}
+              alt={featured.title}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[2000ms] group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="h-24 w-24 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
+                <Play className="h-9 w-9 text-ink fill-ink ml-1.5" />
+              </div>
+            </div>
+          </motion.button>
         </div>
       </section>
 
-      <PageHero eyebrow="Cinematic Films" title="Where every glance becomes a film" subtitle="Wedding films, pre-wedding stories and cinematic highlights — crafted to relive forever." image={FILMS[1].poster} />
-
       {/* FILTERS */}
-      <section className="py-12 px-6 border-b border-border">
+      <section className="py-10 px-6 border-b border-border sticky top-20 z-30 bg-ink/85 backdrop-blur-xl">
         <div className="mx-auto max-w-[1500px] flex flex-wrap gap-3 justify-center">
           {CATEGORIES.map((c) => (
-            <button key={c} onClick={() => setFilter(c)} className={`px-6 py-3 text-[11px] uppercase tracking-luxe border transition-all ${filter === c ? "bg-gold text-ink border-gold" : "border-border text-ivory/75 hover:border-gold hover:text-gold"}`}>
+            <button
+              key={c}
+              onClick={() => setFilter(c)}
+              className={`px-6 py-3 text-[11px] uppercase tracking-luxe border transition-all ${
+                filter === c ? "bg-gold text-ink border-gold" : "border-border text-ivory/75 hover:border-gold hover:text-gold"
+              }`}
+            >
               {c}
             </button>
           ))}
         </div>
       </section>
 
-      {/* GRID */}
+      {/* GALLERY */}
       <section className="py-20 px-6">
-        <div className="mx-auto max-w-[1500px] grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mx-auto max-w-[1500px] grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((f, i) => {
             const realIdx = FILMS.indexOf(f);
             return (
-              <motion.button
+              <motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: (i % 6) * 0.06 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: (i % 6) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="group flex flex-col cursor-pointer"
                 onClick={() => setPlaying(realIdx)}
-                className="group relative block aspect-video overflow-hidden bg-ink text-left"
               >
-                <video src={f.src} poster={f.poster} muted loop playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()} onMouseLeave={(e) => { const v = e.currentTarget as HTMLVideoElement; v.pause(); v.currentTime = 0; }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 grid place-items-center pointer-events-none">
-                  <div className="h-16 w-16 rounded-full bg-gold/90 grid place-items-center shadow-gold transition-transform group-hover:scale-110">
-                    <Play className="h-6 w-6 text-ink fill-ink ml-0.5" />
-                  </div>
+                <LazyVideo
+                  src={f.src}
+                  poster={f.poster}
+                  hoverPlay
+                  showPlayButton
+                  className="w-full aspect-video shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)] transition-transform duration-700 group-hover:-translate-y-1"
+                />
+                <div className="pt-5">
+                  <div className="text-[10px] tracking-luxe uppercase text-gold mb-2">{f.category}</div>
+                  <h3 className="font-serif text-xl text-ivory group-hover:text-gold transition-colors">{f.title}</h3>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none">
-                  <div className="text-[10px] tracking-luxe uppercase text-gold mb-1">{f.category}</div>
-                  <h3 className="font-serif text-xl text-ivory">{f.title}</h3>
-                </div>
-              </motion.button>
+              </motion.div>
             );
           })}
         </div>
@@ -99,8 +132,17 @@ export default function FilmsPage() {
           <button className="absolute top-5 right-5 h-12 w-12 grid place-items-center text-ivory hover:text-gold" aria-label="Close" onClick={() => setPlaying(null)}>
             <X className="h-6 w-6" />
           </button>
-          <div className="w-full max-w-6xl aspect-video" onClick={(e) => e.stopPropagation()}>
-            <video src={FILMS[playing].src} poster={FILMS[playing].poster} controls autoPlay className="w-full h-full object-contain bg-black" />
+          <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
+            <div className="aspect-video w-full bg-black">
+              <video
+                src={FILMS[playing].src}
+                poster={FILMS[playing].poster}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain bg-black"
+              />
+            </div>
             <div className="text-center mt-4">
               <div className="text-[11px] tracking-luxe uppercase text-gold">{FILMS[playing].category}</div>
               <div className="font-serif text-2xl text-ivory mt-1">{FILMS[playing].title}</div>
