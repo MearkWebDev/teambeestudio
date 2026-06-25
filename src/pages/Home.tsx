@@ -94,7 +94,14 @@ export default function HomePage() {
       <section className="relative h-screen min-h-[680px] w-full overflow-hidden">
         {slides.map((s, i) => (
           <div key={i} className="absolute inset-0 transition-opacity" style={{ opacity: i === active ? 1 : 0, transitionDuration: "1500ms" }} aria-hidden={i !== active}>
-            <img src={s.image} alt={s.title} className="absolute inset-0 h-full w-full object-cover kenburns" />
+            <img
+              src={s.image}
+              alt={s.title}
+              {...(i === 0
+                ? { fetchPriority: "high" as const, loading: "eager" as const, decoding: "sync" as const }
+                : { loading: "lazy" as const, decoding: "async" as const })}
+              className="absolute inset-0 h-full w-full object-cover kenburns"
+            />
             <div className="absolute inset-0 bg-overlay" />
             <div className="absolute inset-0 bg-vignette" />
           </div>
