@@ -1,7 +1,6 @@
 import { useSeo } from "@/lib/useSeo";
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
