@@ -1,34 +1,60 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from "lucide-react";
-import { SITE, NAV, IMG } from "@/lib/site";
+import { SITE, IMG } from "@/lib/site";
+
+const QUICK_LINKS = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/photography", label: "Photography" },
+  { to: "/films", label: "Films" },
+  { to: "/services", label: "Services" },
+  { to: "/reviews", label: "Reviews" },
+  { to: "/contact", label: "Contact" },
+];
+
+const PHOTO_LINKS = [
+  { to: "/photography?cat=wedding", label: "Wedding" },
+  { to: "/photography?cat=pre-wedding", label: "Pre Wedding" },
+  { to: "/photography?cat=destination", label: "Destination" },
+  { to: "/photography?cat=maternity", label: "Maternity" },
+];
 
 const SERVICES = [
   "Wedding Photography",
-  "Wedding Films",
-  "Candid Photography",
-  "Engagement Photography",
-  "Maternity Photography",
-  "Destination Weddings",
+  "Wedding Cinematography",
+  "Pre Wedding",
+  "Destination Wedding",
+  "Maternity & Baby Shower",
+  "Reception & Engagement",
+  "Album Design",
+  "Drone Coverage",
 ];
 
 export function Footer() {
   return (
     <footer className="bg-ink border-t border-border mt-32">
-      <div className="mx-auto max-w-[1500px] px-6 lg:px-10 py-20 grid lg:grid-cols-4 gap-12">
-        <div className="lg:col-span-1">
-          <div className="h-24 w-36 rounded-2xl bg-ivory flex items-center justify-center overflow-hidden shadow-gold mb-6">
-            <img src={IMG.logo} alt="Team Bee Creative Studios" className="h-20 w-auto object-contain" />
-          </div>
-          <p className="text-sm text-ivory/70 leading-relaxed">
-            Team Bee Creative Studios specializes in wedding photography, cinematic wedding films, candid storytelling, and destination wedding coverage across Tamil Nadu and India. We capture timeless moments and transform them into unforgettable visual stories.
+      <div className="mx-auto max-w-[1500px] px-6 lg:px-10 py-20 grid lg:grid-cols-5 gap-12">
+        <div className="lg:col-span-2">
+          <img src={IMG.logo} alt="Team Bee Creative Studios" className="h-20 w-auto object-contain mb-6" />
+          <p className="text-sm text-ivory/70 leading-relaxed max-w-md">
+            Team Bee Creative Studios — established 2009 in Coimbatore. Cinematic wedding photography, films and storytelling for couples across Tamil Nadu and India. Every story, captured with elegance, authenticity and a 45-day delivery promise.
           </p>
           <p className="font-script text-2xl text-gold mt-5">{SITE.tagline}</p>
+          <p className="text-[11px] tracking-wider-2 uppercase text-ivory/50 mt-1">{SITE.taglineEn}</p>
         </div>
 
         <div>
           <h4 className="text-[11px] tracking-luxe uppercase text-gold mb-5">Quick Links</h4>
-          <ul className="space-y-3">
-            {NAV.map((n) => (
+          <ul className="space-y-2.5">
+            {QUICK_LINKS.map((n) => (
+              <li key={n.to}>
+                <Link to={n.to} className="text-sm text-ivory/70 hover:text-gold transition-colors">{n.label}</Link>
+              </li>
+            ))}
+          </ul>
+          <h4 className="text-[11px] tracking-luxe uppercase text-gold mt-7 mb-4">Photography</h4>
+          <ul className="space-y-2.5">
+            {PHOTO_LINKS.map((n) => (
               <li key={n.to}>
                 <Link to={n.to} className="text-sm text-ivory/70 hover:text-gold transition-colors">{n.label}</Link>
               </li>
@@ -38,7 +64,7 @@ export function Footer() {
 
         <div>
           <h4 className="text-[11px] tracking-luxe uppercase text-gold mb-5">Services</h4>
-          <ul className="space-y-3 text-sm text-ivory/70">
+          <ul className="space-y-2.5 text-sm text-ivory/70">
             {SERVICES.map((s) => <li key={s}>{s}</li>)}
           </ul>
         </div>
@@ -60,7 +86,10 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-[1500px] px-6 lg:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <div>© {new Date().getFullYear()} Team Bee Creative Studios. All Rights Reserved.</div>
-          <div className="tracking-wider-2 uppercase">Designed by <span className="text-gold">Meark Enterprise Pvt Ltd</span></div>
+          <div className="flex gap-5">
+            <Link to="/terms" className="hover:text-gold transition-colors">Terms of Use</Link>
+            <Link to="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
+          </div>
         </div>
       </div>
     </footer>
