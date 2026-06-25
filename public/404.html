@@ -1,12 +1,21 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Team Bee Creative Studios</title>
     <script>
-      // Save the path the user tried to load, then redirect to the SPA entry.
-      sessionStorage.redirect = location.href;
-      location.replace("/teambeestudio/");
+      // Single Page Apps for GitHub Pages — rafgraph/spa-github-pages
+      // Set pathSegmentsToKeep = 1 when deployed under /<repo>/ (e.g. /teambeestudio/)
+      // Set to 0 for apex / root deploys.
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
     </script>
   </head>
   <body></body>
