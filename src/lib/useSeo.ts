@@ -1,55 +1,65 @@
 import { useEffect } from "react";
 
-type Meta = { title?: string; description?: string; image?: string; canonical?: string };
+type Seo = {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  jsonLd?: object | object[];
+};
 
-function upsert(selector: string, create: () => HTMLElement, attr: string, value: string) {
-  let el = document.head.querySelector<HTMLElement>(selector);
+const SITE_URL = "https://teambeestudio.lovable.app";
+
+function setMeta(selector: string, attr: string, value: string) {
+  let el = document.head.querySelector<HTMLMetaElement>(selector);
   if (!el) {
-    el = create();
+    el = document.createElement("meta");
+    const [name, val] = attr.split("=");
+    el.setAttribute(name, val.replace(/"/g, ""));
     document.head.appendChild(el);
   }
-  el.setAttribute(attr, value);
+  el.setAttribute("content", value);
 }
 
-export function useSeo({ title, description, image, canonical }: Meta) {
+export function useSeo({ title, description, image, canonical, jsonLd }: Seo) {
   useEffect(() => {
     if (title) document.title = title;
     if (description) {
-      upsert('meta[name="description"]', () => {
-        const m = document.createElement("meta");
-        m.setAttribute("name", "description");
-        return m;
-      }, "content", description);
+      setMeta('meta[name="description"]', 'name="description"', description);
+      setMeta('meta[property="og:description"]', 'property="og:description"', description);
+      setMeta('meta[name="twitter:description"]', 'name="twitter:description"', description);
     }
     if (title) {
-      upsert('meta[property="og:title"]', () => {
-        const m = document.createElement("meta");
-        m.setAttribute("property", "og:title");
-        return m;
-      }, "content", title);
-    }
-    if (description) {
-      upsert('meta[property="og:description"]', () => {
-        const m = document.createElement("meta");
-        m.setAttribute("property", "og:description");
-        return m;
-      }, "content", description);
+      setMeta('meta[property="og:title"]', 'property="og:title"', title);
+      setMeta('meta[name="twitter:title"]', 'name="twitter:title"', title);
     }
     if (image) {
-      upsert('meta[property="og:image"]', () => {
-        const m = document.createElement("meta");
-        m.setAttribute("property", "og:image");
-        return m;
-      }, "content", image);
+      setMeta('meta[property="og:image"]', 'property="og:image"', image);
+      setMeta('meta[name="twitter:image"]', 'name="twitter:image"', image);
+      setMeta('meta[name="twitter:card"]', 'name="twitter:card"', "summary_large_image");
     }
-    if (canonical) {
-      let link = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-      if (!link) {
-        link = document.createElement("link");
-        link.setAttribute("rel", "canonical");
-        document.head.appendChild(link);
-      }
-      link.setAttribute("href", canonical);
+    const url = canonical ? `${SITE_URL}${canonical}` : `${SITE_URL}${window.location.pathname}`;
+    let link = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", "canonical");
+      document.head.appendChild(link);
     }
-  }, [title, description, image, canonical]);
+    link.setAttribute("href", url);
+    setMeta('meta[property="og:url"]', 'property="og:url"', url);
+
+    // JSON-LD
+    const existing = document.head.querySelectorAll('script[data-seo-jsonld]');
+    existing.forEach((s) => s.remove());
+    if (jsonLd) {
+      const arr = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+      arr.forEach((obj) => {
+        const s = document.createElement("script");
+        s.setAttribute("type", "application/ld+json");
+        s.setAttribute("data-seo-jsonld", "1");
+        s.text = JSON.stringify(obj);
+        document.head.appendChild(s);
+      });
+    }
+  }, [title, description, image, canonical, JSON.stringify(jsonLd)]);
 }

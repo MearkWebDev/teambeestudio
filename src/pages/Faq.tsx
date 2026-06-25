@@ -1,41 +1,37 @@
 import { useSeo } from "@/lib/useSeo";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
-import { IMG } from "@/lib/site";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { WEDDING } from "@/lib/site";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const faqs = [
-  { q: "Who are the best wedding photographers in Coimbatore?", a: "Team Bee Creative Studios is among Coimbatore's most trusted wedding photography and cinematic film studios. Since 2017, we have served 500+ couples across Tamil Nadu with candid storytelling, cinematic films and a 45-day delivery promise." },
-  { q: "How much does wedding photography cost in Coimbatore?", a: "Investment depends on event days, team size, deliverables and travel. Our wedding photography packages typically start from a premium tier suited to full-day coverage with cinematic films and albums. Share your dates and we will craft a tailored quote." },
-  { q: "Do you provide wedding films?", a: "Yes. Cinematic wedding films, highlight reels and full event coverage are core to our work. Every couple receives both photographs and films, edited and graded in-house." },
-  { q: "How long does delivery take?", a: "Forty-five days. Your complete photographs, cinematic films and albums are delivered within 45 days of your last event — every time." },
-  { q: "Do you cover destination weddings?", a: "Yes. We travel across Tamil Nadu and India — Pollachi, Valparai, Nilgiris, Kodaikanal, Munnar, Goa and beyond — and have shot destination weddings outside India on request." },
-  { q: "Why choose Team Bee Creative Studios?", a: "We blend cinematic craft with calm presence on set, deliver on time without compromise, and treat every wedding as a once-in-a-lifetime story worth preserving with care." },
-  { q: "What areas around Coimbatore do you serve?", a: "Our studio is in R.S. Puram, Coimbatore. We regularly cover weddings across Coimbatore, Tiruppur, Erode, Salem, Pollachi, Nilgiris and the wider Tamil Nadu region." },
-  { q: "Can we customise our package?", a: "Absolutely. Every wedding is different — we tailor coverage, team strength, deliverables and album design to fit your celebration and budget." },
+const FAQS = [
+  { q: "Why choose Team Bee Creative Studios?", a: "Established 2009, Team Bee Creative Studios is one of Coimbatore's most trusted wedding photography & cinematic film studios — known for storytelling, premium editing and a 45-day delivery promise." },
+  { q: "What services do you offer?", a: "Wedding photography, cinematic wedding films, pre-wedding, engagement, destination, maternity, baby shower, reception, album design and drone coverage." },
+  { q: "Which areas in Tamil Nadu do you cover?", a: "Coimbatore, R.S. Puram, Pollachi, Tiruppur, Erode, Salem, Chennai and destination weddings across India and overseas." },
+  { q: "How much does wedding photography cost in Coimbatore?", a: "Investment depends on event days, team size, deliverables and travel. Share your dates and we'll craft a tailored quote." },
+  { q: "How early should I book my wedding photographer?", a: "We recommend booking 4–8 months in advance to secure your dates, especially during peak Tamil Nadu wedding season." },
+  { q: "How long does delivery take?", a: "Every wedding deliverable reaches you within 45 days — edited photos, cinematic films and album drafts included." },
+  { q: "Do you travel for destination weddings?", a: "Yes — we cover destinations across Tamil Nadu, India and overseas on request." },
 ];
 
-function FAQPage() {
-  useSeo({ title: "FAQ — Wedding Photography Coimbatore | Team Bee Creative Studios", description: "Answers to the most common questions about wedding photography, cinematic films, pricing, delivery and destination shoots in Coimbatore.", image: IMG.bridePortrait, canonical: "/faq" });
+export default function FaqPage() {
+  useSeo({
+    title: "FAQs — Wedding Photography Coimbatore | Team Bee Creative Studios",
+    description: "Answers to common questions about wedding photography, films, packages, delivery and bookings with Team Bee Creative Studios, Coimbatore.",
+    image: WEDDING[3],
+    canonical: "/faq",
+    jsonLd: { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQS.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+  });
+
   return (
     <SiteLayout>
-      <PageHero eyebrow="Questions, answered" title="Frequently Asked Questions" subtitle="Everything couples ask us before booking — answered honestly." image={IMG.bridePortrait} />
-
-      <section className="px-6 py-24">
+      <PageHero eyebrow="Questions, Answered" title="Frequently Asked" subtitle="Everything you need to know before working with Team Bee Creative Studios." image={WEDDING[3]} />
+      <section className="py-24 px-6">
         <div className="mx-auto max-w-3xl">
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map((f, i) => (
+            {FAQS.map((f, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-border">
-                <AccordionTrigger className="font-serif text-xl md:text-2xl text-ivory hover:text-gold text-left py-6">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-ivory/75 text-base leading-relaxed pb-8">
-                  {f.a}
-                </AccordionContent>
+                <AccordionTrigger className="font-serif text-lg md:text-xl text-ivory hover:text-gold text-left py-6">{f.q}</AccordionTrigger>
+                <AccordionContent className="text-ivory/75 text-base leading-relaxed pb-8">{f.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -44,5 +40,3 @@ function FAQPage() {
     </SiteLayout>
   );
 }
-
-export default FAQPage;

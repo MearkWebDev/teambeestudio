@@ -1,71 +1,110 @@
 import { useSeo } from "@/lib/useSeo";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowRight, Clock } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
-import { IMG, SITE } from "@/lib/site";
-import { ArrowRight, Heart, Clock, Award, Camera } from "lucide-react";
+import { WEDDING, SITE } from "@/lib/site";
 
-function AboutPage() {
-  useSeo({ title: "About — Team Bee Creative Studios | Coimbatore Wedding Photographers", description: "Since 2017, Team Bee Creative Studios has captured weddings across Coimbatore and Tamil Nadu. Cinematic storytelling, candid moments, 45-day delivery.", image: IMG.coupleNature, canonical: "/about" });
+const TIMELINE = [
+  { year: "2009", title: "Established", body: "Team Bee Creative Studios was founded with a single belief — every moment deserves to be remembered beautifully." },
+  { year: "Journey", title: "A Studio Built on Trust", body: "What began as a passion for capturing emotions grew into a creative studio built on trust, creativity and a vision to preserve memories with elegance." },
+  { year: "Weddings", title: "The Heart of Our Story", body: "Among countless beautiful journeys, weddings became the heart of our work — a collection of emotions, a bond of love, a journey of families coming together." },
+  { year: "Experience", title: "Hundreds of Stories", body: "From the first glance to the final celebration, we capture every smile, every emotion and every little detail that makes each story unique." },
+  { year: "Mission", title: "Cinematic Memories", body: "To transform once-in-a-lifetime moments into cinematic films and photographs that allow couples and families to relive their happiest memories for generations." },
+  { year: "45 Days", title: "The Delivery Promise", body: "We built a professional workflow that ensures every wedding deliverable reaches you within 45 days — with the same passion, perfection and care." },
+  { year: "Vision", title: "Timeless Treasures", body: "To create unforgettable experiences, capture priceless emotions and turn every beautiful moment into a timeless treasure." },
+];
+
+export default function AboutPage() {
+  useSeo({
+    title: "About Team Bee Creative Studios — Wedding Photographers in Coimbatore Since 2009",
+    description: "Established 2009 in Coimbatore. Cinematic wedding photography, films and storytelling with a 45-day delivery promise. Our story, mission and vision.",
+    image: WEDDING[7],
+    canonical: "/about",
+  });
+
   return (
     <SiteLayout>
-      <PageHero eyebrow="Our Story · Est. 2017" title="Stories told the way they deserve" subtitle="A creative studio built on emotion, craft and the quiet honesty of real moments." image={IMG.bridePortrait} />
+      <PageHero
+        eyebrow={`Established ${SITE.established}`}
+        title="Our Story"
+        subtitle="Since 2009 — turning precious moments into timeless stories through the art of visual storytelling."
+        image={WEDDING[7]}
+      />
 
       <section className="py-32 px-6">
-        <div className="mx-auto max-w-4xl">
-          <div className="grid md:grid-cols-[1fr_2fr] gap-12">
-            <div className="text-[11px] tracking-luxe uppercase text-gold">Our Story</div>
-            <div className="space-y-6 text-ivory/80 leading-relaxed text-lg font-light">
-              <p>Since 2017, Team Bee Creative Studios has been dedicated to capturing life's most meaningful moments and transforming them into stories that last forever. What began as a passion for visual storytelling has grown into a creative studio known for preserving emotions with authenticity, quality and cinematic excellence.</p>
-              <p>Over the years, weddings have become one of the most important parts of our journey. We believe a wedding is not just a celebration — it is a once-in-a-lifetime story filled with emotions, traditions, laughter and unforgettable memories.</p>
-              <p>From the smallest candid moments to the grandest celebrations, our team works with attention to every detail, creating films and photographs that allow couples and families to relive their special day for years to come.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 px-6 bg-card/40 border-y border-border">
         <div className="mx-auto max-w-4xl text-center">
-          <Clock className="h-10 w-10 text-gold mx-auto mb-6" strokeWidth={1} />
-          <h2 className="font-serif text-4xl md:text-5xl text-ivory">The 45-Day Promise</h2>
-          <p className="mt-6 text-ivory/75 text-lg leading-relaxed max-w-2xl mx-auto font-light">
-            While wedding deliverables are often delayed for months, we challenge ourselves to maintain both quality and speed. Every Team Bee couple receives their full set of photographs and films within 45 days — because memories deserve to be relived without waiting.
+          <p className="font-script text-4xl md:text-5xl text-gold mb-4">{SITE.tagline}</p>
+          <p className="text-[11px] tracking-luxe uppercase text-ivory/60 mb-12">{SITE.taglineEn}</p>
+          <p className="font-serif text-2xl md:text-3xl text-ivory/90 leading-relaxed italic text-balance">
+            "Every story begins with a moment — a smile, a feeling, a memory that deserves to live forever."
+          </p>
+          <div className="hairline w-24 mx-auto my-10" />
+          <p className="text-lg text-ivory/75 leading-relaxed">
+            What started as a passion for capturing emotions has grown into a creative studio built on trust, creativity and the vision of preserving memories with elegance, authenticity and cinematic excellence.
           </p>
         </div>
       </section>
 
-      <section className="py-32 px-6">
-        <div className="mx-auto max-w-[1300px]">
-          <div className="text-center mb-16">
-            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Mission · Vision · Values</div>
-            <h2 className="font-serif text-4xl md:text-5xl">What guides every frame</h2>
+      {/* TIMELINE */}
+      <section className="py-24 px-6 border-t border-border bg-card/20">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-20">
+            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Our Journey</div>
+            <h2 className="font-serif text-4xl md:text-6xl">A timeline of stories</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-px bg-border">
-            {[
-              { icon: Heart, t: "Mission", d: "To turn the most personal moments of your life into stories you can hold, watch and relive — without compromise." },
-              { icon: Award, t: "Vision", d: "To be remembered as the studio that gave Tamil Nadu its most honest, cinematic and timeless wedding films." },
-              { icon: Camera, t: "Values", d: "Authenticity, craft, calm presence on set, and an obsession with delivering on time, every time." },
-            ].map((v) => (
-              <div key={v.t} className="bg-background p-12">
-                <v.icon className="h-7 w-7 text-gold mb-6" strokeWidth={1.2} />
-                <h3 className="font-serif text-3xl mb-4">{v.t}</h3>
-                <p className="text-ivory/70 leading-relaxed">{v.d}</p>
-              </div>
+          <div className="relative">
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2" />
+            {TIMELINE.map((step, i) => (
+              <motion.div
+                key={step.year}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7, delay: 0.05 }}
+                className={`relative grid md:grid-cols-2 gap-8 mb-16 ${i % 2 === 0 ? "" : "md:[direction:rtl]"}`}
+              >
+                <div className={`pl-12 md:pl-0 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12 md:text-left [direction:ltr]"}`}>
+                  <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">{step.year}</div>
+                  <h3 className="font-serif text-3xl text-ivory mb-4">{step.title}</h3>
+                  <p className="text-ivory/70 leading-relaxed">{step.body}</p>
+                </div>
+                <div className="hidden md:block" />
+                <div className="absolute left-4 md:left-1/2 top-1 h-3 w-3 rounded-full bg-gold ring-4 ring-ink md:-translate-x-1/2" />
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* FOUNDER */}
       <section className="py-32 px-6 border-t border-border">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="font-script text-4xl text-gold mb-6">{SITE.tagline}</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-ivory">Let's begin your story</h2>
-          <Link to="/contact" className="mt-10 inline-flex items-center gap-3 px-10 py-5 bg-gold text-ink text-[11px] uppercase tracking-luxe hover:bg-gold-soft transition-all">
-            Reach the Studio <ArrowRight className="h-4 w-4" />
-          </Link>
+        <div className="mx-auto max-w-5xl grid md:grid-cols-5 gap-12 items-center">
+          <div className="md:col-span-2">
+            <div className="relative aspect-[3/4] overflow-hidden bg-card border border-border grid place-items-center">
+              <div className="text-center px-6">
+                <Clock className="h-8 w-8 text-gold mx-auto mb-3" />
+                <div className="text-[11px] tracking-luxe uppercase text-ivory/60">Founder portrait of</div>
+                <div className="font-serif text-2xl text-ivory mt-2">Mr. Shan</div>
+                <div className="text-xs text-ivory/50 mt-2">Image coming soon</div>
+              </div>
+            </div>
+          </div>
+          <div className="md:col-span-3">
+            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Founder</div>
+            <h2 className="font-serif text-4xl md:text-5xl mb-6">Led by Mr. Shan</h2>
+            <p className="text-ivory/75 leading-relaxed mb-4">
+              With years of experience and countless stories preserved, our journey continues with one purpose — to create unforgettable experiences, capture priceless emotions, and turn every beautiful moment into a timeless treasure.
+            </p>
+            <p className="text-ivory/75 leading-relaxed">
+              We understand that one of the biggest challenges in the wedding industry is delivering memories on time without compromising quality. That's why we built a workflow that ensures every wedding deliverable reaches you within 45 days.
+            </p>
+            <Link to="/contact" className="mt-8 inline-flex items-center gap-3 px-8 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
+              Work With Us <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </SiteLayout>
   );
 }
-
-export default AboutPage;
