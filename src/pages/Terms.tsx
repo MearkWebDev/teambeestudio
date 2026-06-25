@@ -12,7 +12,7 @@ export default function TermsPage() {
 
   return (
     <SiteLayout>
-      <PageHero eyebrow="Legal" title="Terms of Use" image={WEDDING[5]} />
+      <PageHero eyebrow="Legal" title="Terms of Use" image={WEDDING[5]} breadcrumb="Terms of Use" />
       <section className="py-24 px-6">
         <div className="mx-auto max-w-3xl prose prose-invert space-y-8 text-ivory/80 leading-relaxed">
           <p className="text-sm text-ivory/60">Last updated: {new Date().getFullYear()}</p>
