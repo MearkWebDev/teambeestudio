@@ -30,6 +30,7 @@ export default function AboutPage() {
         title="Our Story"
         subtitle="Since 2009 — turning precious moments into timeless stories through the art of visual storytelling."
         image={WEDDING[7]}
+        breadcrumb="About"
       />
 
       <section className="py-32 px-6">

@@ -45,6 +45,7 @@ export default function PhotographyPage() {
         title="Galleries & Stories"
         subtitle="Wedding, Pre Wedding, Destination and Maternity — every frame, a chapter of your story."
         image={WEDDING[2]}
+        breadcrumb="Photography"
       />
 
       {/* FILTERS */}
