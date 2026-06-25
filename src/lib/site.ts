@@ -1,10 +1,9 @@
-import logoAsset from "@/assets/teambee-logo.png.asset.json";
-
 // Azure Blob CDN base
 const AZ = "https://teambee.blob.core.windows.net";
 
+// Logo served from public/ so it works on Lovable, dev, and GitHub Pages subpaths
 export const IMG = {
-  logo: logoAsset.url,
+  logo: `${import.meta.env.BASE_URL}images/logo.png`,
 };
 
 export const WEDDING = [
