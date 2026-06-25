@@ -3,13 +3,8 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
-// Base path strategy:
-//  - Local dev (vite dev) and Lovable preview/publish → "/"
-//  - GitHub Pages deploy → set VITE_BASE=/teambeestudio/ in the workflow
-const base = process.env.VITE_BASE ?? "/";
-
 export default defineConfig({
-  base,
+  base: '/teambeestudio/',   // ← hardcode it directly, no env needed
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: { "@": path.resolve(__dirname, "./src") },
