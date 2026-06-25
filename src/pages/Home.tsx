@@ -4,34 +4,38 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
+import { LazyVideo } from "@/components/site/LazyVideo";
 import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, TESTIMONIALS, PHOTO_CATEGORIES } from "@/lib/site";
+
+const AZ = "https://teambee.blob.core.windows.net";
 
 const slides = [
   {
-    image: WEDDING[0],
+    image: `${AZ}/wedding/ARU08627.jpg`,
     eyebrow: "Wedding Photography · Coimbatore",
-    title: "Capturing Moments,\nCreating Memories",
-    subtitle: "Best wedding photographer in Coimbatore — cinematic films, candid storytelling, 45-day delivery.",
-    cta1: { label: "Book Your Wedding", to: "/contact?event=Wedding" },
-    cta2: { label: "Explore Photography", to: "/photography" },
+    title: "Every Wedding Has A Beautiful Story.\nWe Capture It Forever.",
+    subtitle: "Luxury Wedding Photography & Cinematic Films in Coimbatore.",
+    cta1: { label: "View Portfolio", to: "/photography" },
+    cta2: { label: "Book Your Wedding", to: "/contact?event=Wedding" },
   },
   {
-    image: PRE_WEDDING[0],
-    eyebrow: "Pre-Wedding Stories",
-    title: "Your Love Story\nDeserves A Beautiful Frame",
-    subtitle: "Romantic, story-driven shoots designed around you as a couple.",
-    cta1: { label: "Book Pre Wedding", to: "/contact?event=Pre+Wedding" },
-    cta2: { label: "Watch Films", to: "/films" },
-  },
-  {
-    image: DESTINATION[0],
+    image: `${AZ}/destination-wedding/ARU00954%20CC.jpg`,
     eyebrow: "Destination Weddings",
-    title: "Weddings Beyond\nBorders & Beautiful Skies",
-    subtitle: "From Nilgiris hill stations to coastal palaces — your destination, our craft.",
-    cta1: { label: "Plan Destination Wedding", to: "/contact?event=Destination" },
-    cta2: { label: "Our Approach", to: "/about" },
+    title: "Where Love Meets\nBeautiful Destinations",
+    subtitle: "Destination Wedding Photography crafted with timeless elegance and cinematic storytelling.",
+    cta1: { label: "Explore Destination Weddings", to: "/photography?cat=destination" },
+    cta2: { label: "Get a Quote", to: "/contact?event=Destination" },
+  },
+  {
+    image: `${AZ}/pre-wedding/dsc08531.jpg`,
+    eyebrow: "Pre Wedding Stories",
+    title: "Before Forever Begins,\nLet's Capture Your Story",
+    subtitle: "Creative Pre-Wedding Photography with natural emotions and cinematic frames.",
+    cta1: { label: "Explore Pre-Wedding", to: "/photography?cat=pre-wedding" },
+    cta2: { label: "Book Your Shoot", to: "/contact?event=Pre+Wedding" },
   },
 ];
+
 
 const services = [
   { icon: Camera, t: "Wedding Photography" },
