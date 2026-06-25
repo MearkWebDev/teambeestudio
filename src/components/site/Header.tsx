@@ -27,7 +27,7 @@ export function Header() {
     >
       <div className="mx-auto max-w-[1500px] px-6 lg:px-10 flex items-center justify-between h-20">
         <Link to="/" className="flex items-center gap-3 group" aria-label="Team Bee Creative Studios — Home">
-          <img src={IMG.logo} alt="Team Bee Creative Studios" className="h-14 md:h-16 w-auto object-contain" />
+          <img src={IMG.logoWhite} alt="Team Bee Creative Studios" className="h-14 md:h-16 w-auto object-contain" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
