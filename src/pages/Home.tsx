@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote, Star } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, PHOTO_CATEGORIES, ytThumb, ytThumbFallback, ytEmbed } from "@/lib/site";
+import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, PHOTO_CATEGORIES, ytThumb, ytThumbFallback, ytEmbed, ytWatch } from "@/lib/site";
 
 const AZ = "https://teambee.blob.core.windows.net";
 
