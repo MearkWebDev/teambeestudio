@@ -155,14 +155,7 @@ export default function FilmsPage() {
           </button>
           <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
             <div className="aspect-video w-full bg-black">
-              <iframe
-                src={ytEmbed(FILMS[playing].id)}
-                title={FILMS[playing].title}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+              <YouTubePlayer id={FILMS[playing].id} title={FILMS[playing].title} />
             </div>
             <div className="text-center mt-4">
               <div className="text-[11px] tracking-luxe uppercase text-gold">{FILMS[playing].category}</div>
