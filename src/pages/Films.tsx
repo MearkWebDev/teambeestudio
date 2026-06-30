@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Play, X, Film as FilmIcon } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
-import { FILMS, ytThumb, ytThumbFallback, ytEmbed } from "@/lib/site";
+import { FILMS, ytThumb, ytThumbFallback, ytEmbed, ytWatch } from "@/lib/site";
 
 const CATEGORIES = ["All", "Wedding", "Pre Wedding", "Engagement", "Reception", "Ceremony", "Destination"];
 
