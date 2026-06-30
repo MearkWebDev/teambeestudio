@@ -1,9 +1,10 @@
 import { useSeo } from "@/lib/useSeo";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { WEDDING, SITE } from "@/lib/site";
+import mrShan from "@/assets/mr-shan.jpg";
 
 const TIMELINE = [
   { year: "2009", title: "Established", body: "Team Bee Creative Studios was founded with a single belief — every moment deserves to be remembered beautifully." },
@@ -80,18 +81,35 @@ export default function AboutPage() {
 
       {/* FOUNDER */}
       <section className="py-32 px-6 border-t border-border">
-        <div className="mx-auto max-w-5xl grid md:grid-cols-5 gap-12 items-center">
-          <div className="md:col-span-2">
-            <div className="relative aspect-[3/4] overflow-hidden bg-card border border-border grid place-items-center">
-              <div className="text-center px-6">
-                <Clock className="h-8 w-8 text-gold mx-auto mb-3" />
-                <div className="text-[11px] tracking-luxe uppercase text-ivory/60">Founder portrait of</div>
-                <div className="font-serif text-2xl text-ivory mt-2">Mr. Shan</div>
-                <div className="text-xs text-ivory/50 mt-2">Image coming soon</div>
+        <div className="mx-auto max-w-6xl grid md:grid-cols-5 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="md:col-span-2 group"
+          >
+            <div className="relative">
+              <div className="absolute -inset-3 border border-gold/30 -z-10 translate-x-3 translate-y-3 transition-transform duration-700 group-hover:translate-x-4 group-hover:translate-y-4" />
+              <div className="relative aspect-[3/4] overflow-hidden bg-card shadow-[0_40px_100px_-30px_rgba(0,0,0,0.8)]">
+                <img
+                  src={mrShan}
+                  alt="Mr. Shan — Founder & Lead Photographer, Team Bee Creative Studios, Coimbatore"
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-[1500ms] group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" />
               </div>
             </div>
-          </div>
-          <div className="md:col-span-3">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="md:col-span-3"
+          >
             <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Founder</div>
             <h2 className="font-serif text-4xl md:text-5xl mb-6">Led by Mr. Shan</h2>
             <p className="text-ivory/75 leading-relaxed mb-4">
