@@ -1,11 +1,10 @@
 import { useSeo } from "@/lib/useSeo";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote } from "lucide-react";
+import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote, Star } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { LazyVideo } from "@/components/site/LazyVideo";
-import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, TESTIMONIALS, PHOTO_CATEGORIES } from "@/lib/site";
+import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, PHOTO_CATEGORIES, ytThumb, ytThumbFallback, ytEmbed } from "@/lib/site";
 
 const AZ = "https://teambee.blob.core.windows.net";
 
