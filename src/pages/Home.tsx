@@ -1,11 +1,10 @@
 import { useSeo } from "@/lib/useSeo";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote } from "lucide-react";
+import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote, Star } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { LazyVideo } from "@/components/site/LazyVideo";
-import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, TESTIMONIALS, PHOTO_CATEGORIES } from "@/lib/site";
+import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, PHOTO_CATEGORIES, ytThumb, ytThumbFallback, ytEmbed } from "@/lib/site";
 
 const AZ = "https://teambee.blob.core.windows.net";
 
@@ -83,6 +82,7 @@ export default function HomePage() {
   });
 
   const [active, setActive] = useState(0);
+  const [homeFilm, setHomeFilm] = useState<number | null>(null);
   useEffect(() => {
     const t = setInterval(() => setActive((i) => (i + 1) % slides.length), 6500);
     return () => clearInterval(t);
@@ -213,57 +213,74 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED FILMS — latest 3, premium cinematic layout */}
-      <section className="relative py-32 px-6 border-t border-border bg-card/30">
+      {/* FEATURED FILMS — best 2 from YouTube, cinematic */}
+      <section className="relative py-36 px-6 border-t border-border bg-card/30">
         <div className="mx-auto max-w-[1500px]">
           <div className="text-center mb-16">
-            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Featured Films</div>
+            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3 inline-flex items-center gap-2">
+              <Film className="h-3 w-3" /> Featured Wedding Films
+            </div>
             <h2 className="font-serif text-4xl md:text-6xl">A photograph captures a moment.<br /><em className="text-gold">A film brings it back to life.</em></h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {FILMS.slice(0, 3).map((f, i) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 40 }}
+          <div className="grid md:grid-cols-2 gap-10">
+            {FILMS.slice(0, 2).map((f, i) => (
+              <motion.button
+                key={f.id}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex flex-col"
+                transition={{ duration: 0.9, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                onClick={() => setHomeFilm(i)}
+                className="group flex flex-col text-left"
               >
-                <Link to="/films" className="block">
-                  <div className="relative w-full aspect-[16/10] overflow-hidden bg-ink mb-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
-                    <img
-                      src={f.poster}
-                      alt={f.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent pointer-events-none" />
-                    <div className="absolute inset-0 grid place-items-center">
-                      <div className="h-20 w-20 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
-                        <Play className="h-7 w-7 text-ink fill-ink ml-1" />
-                      </div>
+                <div className="relative w-full aspect-video overflow-hidden bg-ink mb-6 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.7)]">
+                  <img
+                    src={ytThumb(f.id)}
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).src = ytThumbFallback(f.id))}
+                    alt={`${f.title} — Cinematic Wedding Film, Coimbatore`}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1800ms] group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 grid place-items-center">
+                    <div className="h-24 w-24 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
+                      <Play className="h-9 w-9 text-ink fill-ink ml-1.5" />
                     </div>
-                    <div className="absolute bottom-5 left-5 text-[10px] tracking-luxe uppercase text-gold">{f.category}</div>
                   </div>
-                  <h3 className="font-serif text-2xl md:text-3xl text-ivory mb-3 group-hover:text-gold transition-colors">{f.title}</h3>
-                  <p className="text-sm text-ivory/65 leading-relaxed mb-5">
-                    A cinematic {f.category.toLowerCase()} film by Team Bee — crafted with emotion, music and timeless storytelling.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-gold text-[11px] uppercase tracking-luxe group-hover:gap-3 transition-all">
-                    Watch Film <ArrowRight className="h-3 w-3" />
-                  </span>
-                </Link>
-              </motion.div>
+                  <div className="absolute bottom-5 left-5 text-[10px] tracking-luxe uppercase text-gold">{f.category}</div>
+                </div>
+                <h3 className="font-serif text-2xl md:text-3xl text-ivory mb-3 group-hover:text-gold transition-colors">{f.title}</h3>
+                <p className="text-sm text-ivory/65 leading-relaxed mb-5">
+                  A cinematic {f.category.toLowerCase()} film by Team Bee Creative Studios — crafted with emotion, music and timeless storytelling in Coimbatore, Tamil Nadu.
+                </p>
+                <span className="inline-flex items-center gap-2 text-gold text-[11px] uppercase tracking-luxe group-hover:gap-3 transition-all">
+                  Play Film <ArrowRight className="h-3 w-3" />
+                </span>
+              </motion.button>
             ))}
           </div>
           <div className="text-center mt-16">
             <Link to="/films" className="inline-flex items-center gap-3 px-10 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
-              View All Films <ArrowRight className="h-4 w-4" />
+              View All Wedding Films <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
+
+        {homeFilm !== null && (
+          <div className="fixed inset-0 z-[100] bg-ink/97 backdrop-blur-xl grid place-items-center p-4" onClick={() => setHomeFilm(null)}>
+            <button className="absolute top-5 right-5 h-12 w-12 grid place-items-center text-ivory hover:text-gold" aria-label="Close" onClick={() => setHomeFilm(null)}>✕</button>
+            <div className="w-full max-w-6xl aspect-video" onClick={(e) => e.stopPropagation()}>
+              <iframe
+                src={ytEmbed(FILMS[homeFilm].id)}
+                title={FILMS[homeFilm].title}
+                className="w-full h-full bg-black"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
       </section>
 
 
@@ -297,21 +314,32 @@ export default function HomePage() {
             <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Loved by Couples</div>
             <h2 className="font-serif text-4xl md:text-6xl">Real stories from real couples</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="relative bg-background/40 backdrop-blur-xl border border-border p-3 group">
-                <div className="relative aspect-video overflow-hidden bg-ink">
-                  <TestimonialVideo src={t.src} poster={t.poster} />
-                </div>
-                <div className="flex items-center justify-between p-5">
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: "Priya & Arjun", place: "Coimbatore", quote: "Team Bee turned our wedding into a film we'll cherish forever. Every glance, every tear, every laugh — captured with so much soul." },
+              { name: "Divya & Karthik", place: "Pollachi", quote: "The most professional and warm team. Our pre-wedding shoot felt effortless and the album is pure poetry." },
+              { name: "Meera & Rohan", place: "Nilgiris", quote: "Destination wedding done flawlessly. Their cinematic film made our families cry — in the best way possible." },
+            ].map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.1 }}
+                className="relative bg-background/40 backdrop-blur-xl border border-border p-8 group hover:border-gold/40 transition-colors"
+              >
+                <Quote className="h-7 w-7 text-gold/60 mb-5" />
+                <p className="font-serif italic text-ivory/85 text-lg leading-relaxed mb-6">"{t.quote}"</p>
+                <div className="flex items-center justify-between pt-5 border-t border-border">
                   <div>
-                    <Quote className="h-5 w-5 text-gold/60 mb-2" />
-                    <div className="font-serif text-xl text-ivory">{t.name}</div>
-                    <div className="text-[10px] tracking-luxe uppercase text-gold mt-1">Verified Client</div>
+                    <div className="font-serif text-lg text-ivory">{t.name}</div>
+                    <div className="text-[10px] tracking-luxe uppercase text-gold mt-1">{t.place}</div>
                   </div>
-                  <div className="text-gold text-sm">★★★★★</div>
+                  <div className="flex gap-0.5 text-gold">
+                    {[...Array(5)].map((_, k) => <Star key={k} className="h-3.5 w-3.5 fill-gold" />)}
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
           <div className="text-center mt-12">
@@ -366,39 +394,4 @@ export default function HomePage() {
   );
 }
 
-function TestimonialVideo({ src, poster }: { src: string; poster: string }) {
-  const [play, setPlay] = useState(false);
-  const ref = useRef<HTMLVideoElement>(null);
-  return (
-    <>
-      {!play ? (
-        <button
-          type="button"
-          onClick={() => setPlay(true)}
-          className="absolute inset-0 group"
-          aria-label="Play testimonial"
-        >
-          <img src={poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-ink/30 group-hover:bg-ink/20 transition-colors" />
-          <div className="absolute inset-0 grid place-items-center">
-            <div className="h-16 w-16 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
-              <Play className="h-6 w-6 text-ink fill-ink ml-0.5" />
-            </div>
-          </div>
-        </button>
-      ) : (
-        <video
-          ref={ref}
-          src={src}
-          poster={poster}
-          controls
-          autoPlay
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover bg-ink"
-        />
-      )}
-    </>
-  );
-}
 
