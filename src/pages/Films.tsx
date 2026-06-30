@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Play, X, Film as FilmIcon } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
-import { FILMS, ytThumb, ytThumbFallback, ytEmbed } from "@/lib/site";
+import { FILMS, ytThumb, ytThumbFallback, ytEmbed, ytWatch } from "@/lib/site";
 
 const CATEGORIES = ["All", "Wedding", "Pre Wedding", "Engagement", "Reception", "Ceremony", "Destination"];
 
@@ -159,12 +159,16 @@ export default function FilmsPage() {
                 title={FILMS[playing].title}
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
             </div>
             <div className="text-center mt-4">
               <div className="text-[11px] tracking-luxe uppercase text-gold">{FILMS[playing].category}</div>
               <div className="font-serif text-2xl text-ivory mt-1">{FILMS[playing].title}</div>
+              <a href={ytWatch(FILMS[playing].id)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-[11px] tracking-luxe uppercase text-gold/80 hover:text-gold hover:underline">
+                Trouble playing? Watch on YouTube ↗
+              </a>
             </div>
           </div>
         </div>

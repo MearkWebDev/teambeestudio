@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, Heart, Clock, Users, Plane, Play, Camera, Film, Sparkles, Quote, Star } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, PHOTO_CATEGORIES, ytThumb, ytThumbFallback, ytEmbed } from "@/lib/site";
+import { SITE, WEDDING, PRE_WEDDING, DESTINATION, MATERNITY, FILMS, PHOTO_CATEGORIES, ytThumb, ytThumbFallback, ytEmbed, ytWatch } from "@/lib/site";
 
 const AZ = "https://teambee.blob.core.windows.net";
 
@@ -270,14 +270,22 @@ export default function HomePage() {
         {homeFilm !== null && (
           <div className="fixed inset-0 z-[100] bg-ink/97 backdrop-blur-xl grid place-items-center p-4" onClick={() => setHomeFilm(null)}>
             <button className="absolute top-5 right-5 h-12 w-12 grid place-items-center text-ivory hover:text-gold" aria-label="Close" onClick={() => setHomeFilm(null)}>✕</button>
-            <div className="w-full max-w-6xl aspect-video" onClick={(e) => e.stopPropagation()}>
-              <iframe
-                src={ytEmbed(FILMS[homeFilm].id)}
-                title={FILMS[homeFilm].title}
-                className="w-full h-full bg-black"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+            <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
+              <div className="aspect-video w-full bg-black">
+                <iframe
+                  src={ytEmbed(FILMS[homeFilm].id)}
+                  title={FILMS[homeFilm].title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+              <div className="text-center mt-4">
+                <a href={ytWatch(FILMS[homeFilm].id)} target="_blank" rel="noopener noreferrer" className="text-[11px] tracking-luxe uppercase text-gold hover:underline">
+                  Trouble playing? Watch on YouTube ↗
+                </a>
+              </div>
             </div>
           </div>
         )}
