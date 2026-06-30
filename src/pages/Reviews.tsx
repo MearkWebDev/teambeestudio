@@ -1,9 +1,9 @@
 import { useSeo } from "@/lib/useSeo";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
-import { TESTIMONIALS, WEDDING } from "@/lib/site";
+import { WEDDING } from "@/lib/site";
 
 const WRITTEN = [
   { name: "Priya & Arun", type: "Wedding · Coimbatore", text: "Team Bee captured every moment we missed living through. Watching our film feels like reliving the day in cinema.", rating: 5 },
@@ -73,32 +73,6 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      {/* VIDEO TESTIMONIALS */}
-      <section className="py-24 px-6">
-        <div className="mx-auto max-w-[1300px]">
-          <div className="text-center mb-12">
-            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Video Testimonials</div>
-            <h2 className="font-serif text-4xl md:text-5xl">In their own words</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="relative bg-background/40 backdrop-blur-xl border border-border p-3">
-                <div className="relative aspect-video overflow-hidden">
-                  <video src={t.src} poster={t.poster} controls preload="metadata" className="absolute inset-0 h-full w-full object-cover" />
-                </div>
-                <div className="flex items-center justify-between p-5">
-                  <div>
-                    <Quote className="h-5 w-5 text-gold/60 mb-2" />
-                    <div className="font-serif text-xl text-ivory">{t.name}</div>
-                    <div className="text-[10px] tracking-luxe uppercase text-gold mt-1">Verified Client</div>
-                  </div>
-                  <div className="text-gold text-sm">★★★★★</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* WRITTEN REVIEWS */}
       <section className="py-24 px-6 border-t border-border bg-card/20">
