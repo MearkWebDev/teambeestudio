@@ -1,6 +1,7 @@
 import { useSeo } from "@/lib/useSeo";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { SITE, WEDDING } from "@/lib/site";
@@ -107,9 +108,15 @@ export default function ContactPage() {
                 <li><a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noreferrer" className="flex gap-3 hover:text-gold"><MessageCircle className="h-5 w-5 text-gold" />WhatsApp</a></li>
               </ul>
             </div>
-            <div className="aspect-square w-full overflow-hidden border border-border">
-              <iframe src={SITE.mapEmbed} className="w-full h-full" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Team Bee Studio location"></iframe>
-            </div>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="bg-card border border-border overflow-hidden">
+              <div className="aspect-square w-full">
+                <iframe src={SITE.mapEmbed} className="w-full h-full" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Team Bee Creative Studios — R.S. Puram, Coimbatore"></iframe>
+              </div>
+              <div className="grid grid-cols-2 gap-px bg-border">
+                <a href={SITE.mapDirections} target="_blank" rel="noreferrer" className="bg-card hover:bg-gold hover:text-ink transition-colors px-4 py-3 text-center text-[10px] tracking-luxe uppercase text-gold">Get Directions</a>
+                <a href={SITE.mapLink} target="_blank" rel="noreferrer" className="bg-card hover:bg-gold hover:text-ink transition-colors px-4 py-3 text-center text-[10px] tracking-luxe uppercase text-gold">Open in Google Maps</a>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
