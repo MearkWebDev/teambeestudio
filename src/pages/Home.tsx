@@ -212,57 +212,74 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED FILMS — latest 3, premium cinematic layout */}
-      <section className="relative py-32 px-6 border-t border-border bg-card/30">
+      {/* FEATURED FILMS — best 2 from YouTube, cinematic */}
+      <section className="relative py-36 px-6 border-t border-border bg-card/30">
         <div className="mx-auto max-w-[1500px]">
           <div className="text-center mb-16">
-            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Featured Films</div>
+            <div className="text-[11px] tracking-luxe uppercase text-gold mb-3 inline-flex items-center gap-2">
+              <Film className="h-3 w-3" /> Featured Wedding Films
+            </div>
             <h2 className="font-serif text-4xl md:text-6xl">A photograph captures a moment.<br /><em className="text-gold">A film brings it back to life.</em></h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {FILMS.slice(0, 3).map((f, i) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 40 }}
+          <div className="grid md:grid-cols-2 gap-10">
+            {FILMS.slice(0, 2).map((f, i) => (
+              <motion.button
+                key={f.id}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex flex-col"
+                transition={{ duration: 0.9, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                onClick={() => setHomeFilm(i)}
+                className="group flex flex-col text-left"
               >
-                <Link to="/films" className="block">
-                  <div className="relative w-full aspect-[16/10] overflow-hidden bg-ink mb-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
-                    <img
-                      src={f.poster}
-                      alt={f.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent pointer-events-none" />
-                    <div className="absolute inset-0 grid place-items-center">
-                      <div className="h-20 w-20 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
-                        <Play className="h-7 w-7 text-ink fill-ink ml-1" />
-                      </div>
+                <div className="relative w-full aspect-video overflow-hidden bg-ink mb-6 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.7)]">
+                  <img
+                    src={ytThumb(f.id)}
+                    onError={(e) => ((e.currentTarget as HTMLImageElement).src = ytThumbFallback(f.id))}
+                    alt={`${f.title} — Cinematic Wedding Film, Coimbatore`}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1800ms] group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 grid place-items-center">
+                    <div className="h-24 w-24 rounded-full bg-gold/95 grid place-items-center shadow-gold transition-transform duration-500 group-hover:scale-110">
+                      <Play className="h-9 w-9 text-ink fill-ink ml-1.5" />
                     </div>
-                    <div className="absolute bottom-5 left-5 text-[10px] tracking-luxe uppercase text-gold">{f.category}</div>
                   </div>
-                  <h3 className="font-serif text-2xl md:text-3xl text-ivory mb-3 group-hover:text-gold transition-colors">{f.title}</h3>
-                  <p className="text-sm text-ivory/65 leading-relaxed mb-5">
-                    A cinematic {f.category.toLowerCase()} film by Team Bee — crafted with emotion, music and timeless storytelling.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-gold text-[11px] uppercase tracking-luxe group-hover:gap-3 transition-all">
-                    Watch Film <ArrowRight className="h-3 w-3" />
-                  </span>
-                </Link>
-              </motion.div>
+                  <div className="absolute bottom-5 left-5 text-[10px] tracking-luxe uppercase text-gold">{f.category}</div>
+                </div>
+                <h3 className="font-serif text-2xl md:text-3xl text-ivory mb-3 group-hover:text-gold transition-colors">{f.title}</h3>
+                <p className="text-sm text-ivory/65 leading-relaxed mb-5">
+                  A cinematic {f.category.toLowerCase()} film by Team Bee Creative Studios — crafted with emotion, music and timeless storytelling in Coimbatore, Tamil Nadu.
+                </p>
+                <span className="inline-flex items-center gap-2 text-gold text-[11px] uppercase tracking-luxe group-hover:gap-3 transition-all">
+                  Play Film <ArrowRight className="h-3 w-3" />
+                </span>
+              </motion.button>
             ))}
           </div>
           <div className="text-center mt-16">
             <Link to="/films" className="inline-flex items-center gap-3 px-10 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
-              View All Films <ArrowRight className="h-4 w-4" />
+              View All Wedding Films <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
+
+        {homeFilm !== null && (
+          <div className="fixed inset-0 z-[100] bg-ink/97 backdrop-blur-xl grid place-items-center p-4" onClick={() => setHomeFilm(null)}>
+            <button className="absolute top-5 right-5 h-12 w-12 grid place-items-center text-ivory hover:text-gold" aria-label="Close" onClick={() => setHomeFilm(null)}>✕</button>
+            <div className="w-full max-w-6xl aspect-video" onClick={(e) => e.stopPropagation()}>
+              <iframe
+                src={ytEmbed(FILMS[homeFilm].id)}
+                title={FILMS[homeFilm].title}
+                className="w-full h-full bg-black"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
       </section>
 
 
