@@ -121,7 +121,7 @@ export default function AboutPage() {
             <Link to="/contact" className="mt-8 inline-flex items-center gap-3 px-8 py-4 border border-gold/60 text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
               Work With Us <ArrowRight className="h-4 w-4" />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </SiteLayout>
