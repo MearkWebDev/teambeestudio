@@ -46,7 +46,9 @@ export const MATERNITY = [
 export const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
 export const ytThumbFallback = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 export const ytEmbed = (id: string) =>
-  `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+export const ytOembed = (id: string) =>
+  `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`;
 export const ytWatch = (id: string) => `https://youtu.be/${id}`;
 
 export type Film = { id: string; title: string; category: string };
