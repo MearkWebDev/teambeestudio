@@ -82,6 +82,7 @@ export default function HomePage() {
   });
 
   const [active, setActive] = useState(0);
+  const [homeFilm, setHomeFilm] = useState<number | null>(null);
   useEffect(() => {
     const t = setInterval(() => setActive((i) => (i + 1) % slides.length), 6500);
     return () => clearInterval(t);
