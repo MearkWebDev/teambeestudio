@@ -42,21 +42,41 @@ export const MATERNITY = [
   `${AZ}/maternity-baby-shower/DSC08317.jpg`,
 ];
 
-export const FILMS = [
-  { title: "BVM Wedding Highlight", src: `${AZ}/flims/BVM%20highlight.mp4`, poster: WEDDING[0], category: "Wedding" },
-  { title: "Wedding Highlight", src: `${AZ}/flims/Wedding%20highlight%20new.mp4`, poster: WEDDING[2], category: "Wedding" },
-  { title: "Tanvee Ear Piercing Ceremony", src: `${AZ}/flims/Tanvee%20Ear%20piercing%20ceremony.mp4`, poster: MATERNITY[0], category: "Ceremony" },
-  { title: "Sirpa Engagement", src: `${AZ}/flims/SIRPA%20Engagement%20-%20Teambee%20HD.mp4`, poster: WEDDING[4], category: "Engagement" },
-  { title: "Raunak Highlights", src: `${AZ}/flims/Raunak%20Highlights_New%20Version.mp4`, poster: WEDDING[6], category: "Wedding" },
-  { title: "Pre-Wedding Highlight", src: `${AZ}/flims/Pre-wedding%20highlight%20new.mp4`, poster: PRE_WEDDING[0], category: "Pre Wedding" },
-  { title: "Mansi & Kuashal Wedding", src: `${AZ}/flims/Mansi%20&%20Kuashal%20Wedding%20Highlight.mp4`, poster: WEDDING[8], category: "Wedding" },
-  { title: "Karthik & Priyanka Wedding Film", src: `${AZ}/flims/Karthik%20&%20Priyanka%20Wedding%20film.mp4`, poster: WEDDING[7], category: "Wedding" },
-  { title: "Fraiza Reception Teaser", src: `${AZ}/flims/Fraiza%20Reception%20Teaser.mp4`, poster: WEDDING[1], category: "Reception" },
-];
+// YouTube helpers
+export const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+export const ytThumbFallback = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+export const ytEmbed = (id: string) =>
+  `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+export const ytWatch = (id: string) => `https://youtu.be/${id}`;
 
-export const TESTIMONIALS = [
-  { name: "Advocate Karthic", src: `${AZ}/testimonial/Advocate%20Karthic%20testimonial.mp4`, poster: WEDDING[5] },
-  { name: "Gopala Krishnan", src: `${AZ}/testimonial/Gopala%20Krishnan%20Testimonial%20wa.mp4`, poster: WEDDING[3] },
+export type Film = { id: string; title: string; category: string };
+
+// Curated from official Team Bee YouTube channel
+export const FILMS: Film[] = [
+  { id: "EPhh_ZbQdg8", title: "Cinematic Wedding Highlight", category: "Wedding" },
+  { id: "wROmiQJD2Dk", title: "Wedding Story Film", category: "Wedding" },
+  { id: "eh0YahMyN6s", title: "Pre-Wedding Story", category: "Pre Wedding" },
+  { id: "2n0wePDRof4", title: "Engagement Highlight", category: "Engagement" },
+  { id: "_lpzfJDXmoA", title: "Destination Wedding Film", category: "Destination" },
+  { id: "0fPvrrNCXkQ", title: "Reception Teaser", category: "Reception" },
+  { id: "b2I5-o0Ug9M", title: "Wedding Highlight", category: "Wedding" },
+  { id: "DjOYV3p-ojo", title: "Cinematic Wedding Film", category: "Wedding" },
+  { id: "XpWzmZR_nak", title: "Pre-Wedding Cinematic", category: "Pre Wedding" },
+  { id: "5VA-Cm1m9yM", title: "Wedding Highlight Film", category: "Wedding" },
+  { id: "WUodVJ-svuU", title: "Ceremony Highlights", category: "Ceremony" },
+  { id: "jtJHM-Q_7hQ", title: "Wedding Story", category: "Wedding" },
+  { id: "2hitAPEUbTE", title: "Engagement Story", category: "Engagement" },
+  { id: "dWpwaDgK3DU", title: "Destination Wedding Story", category: "Destination" },
+  { id: "kpXFnQ4gX6k", title: "Reception Film", category: "Reception" },
+  { id: "gwOW4lT57uE", title: "Wedding Highlight", category: "Wedding" },
+  { id: "4K04LhA2LCg", title: "Pre-Wedding Highlight", category: "Pre Wedding" },
+  { id: "VKsa27Mazv8", title: "Cinematic Wedding Story", category: "Wedding" },
+  { id: "f79sF_RhRXE", title: "Wedding Teaser", category: "Wedding" },
+  { id: "hFs9SYYSew0", title: "Ceremony Film", category: "Ceremony" },
+  { id: "8lDVtvboebA", title: "Wedding Film", category: "Wedding" },
+  { id: "EsFpa475oHA", title: "Engagement Cinematic", category: "Engagement" },
+  { id: "0rlXMtL_yH8", title: "Reception Highlight", category: "Reception" },
+  { id: "Zdwd6WjSy6Y", title: "Destination Story", category: "Destination" },
 ];
 
 export const PHOTO_CATEGORIES = [
@@ -86,7 +106,9 @@ export const SITE = {
     youtube: "https://youtube.com/@teambee",
   },
   mapEmbed:
-    "https://www.google.com/maps?q=R.S.+Puram,+Coimbatore,+Tamil+Nadu&output=embed",
+    "https://www.google.com/maps?q=Team+Bee+Creative+Studios,+East+Sambandham+Road,+R.S.+Puram,+Coimbatore&output=embed",
+  mapLink: "https://maps.app.goo.gl/jL6HRTSzAmrUyQTc7",
+  mapDirections: "https://www.google.com/maps/dir/?api=1&destination=Team+Bee+Creative+Studios+RS+Puram+Coimbatore",
 };
 
 export const NAV: { to: string; label: string; submenu?: { to: string; label: string }[] }[] = [
