@@ -314,21 +314,32 @@ export default function HomePage() {
             <div className="text-[11px] tracking-luxe uppercase text-gold mb-3">Loved by Couples</div>
             <h2 className="font-serif text-4xl md:text-6xl">Real stories from real couples</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="relative bg-background/40 backdrop-blur-xl border border-border p-3 group">
-                <div className="relative aspect-video overflow-hidden bg-ink">
-                  <TestimonialVideo src={t.src} poster={t.poster} />
-                </div>
-                <div className="flex items-center justify-between p-5">
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: "Priya & Arjun", place: "Coimbatore", quote: "Team Bee turned our wedding into a film we'll cherish forever. Every glance, every tear, every laugh — captured with so much soul." },
+              { name: "Divya & Karthik", place: "Pollachi", quote: "The most professional and warm team. Our pre-wedding shoot felt effortless and the album is pure poetry." },
+              { name: "Meera & Rohan", place: "Nilgiris", quote: "Destination wedding done flawlessly. Their cinematic film made our families cry — in the best way possible." },
+            ].map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.1 }}
+                className="relative bg-background/40 backdrop-blur-xl border border-border p-8 group hover:border-gold/40 transition-colors"
+              >
+                <Quote className="h-7 w-7 text-gold/60 mb-5" />
+                <p className="font-serif italic text-ivory/85 text-lg leading-relaxed mb-6">"{t.quote}"</p>
+                <div className="flex items-center justify-between pt-5 border-t border-border">
                   <div>
-                    <Quote className="h-5 w-5 text-gold/60 mb-2" />
-                    <div className="font-serif text-xl text-ivory">{t.name}</div>
-                    <div className="text-[10px] tracking-luxe uppercase text-gold mt-1">Verified Client</div>
+                    <div className="font-serif text-lg text-ivory">{t.name}</div>
+                    <div className="text-[10px] tracking-luxe uppercase text-gold mt-1">{t.place}</div>
                   </div>
-                  <div className="text-gold text-sm">★★★★★</div>
+                  <div className="flex gap-0.5 text-gold">
+                    {[...Array(5)].map((_, k) => <Star key={k} className="h-3.5 w-3.5 fill-gold" />)}
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
           <div className="text-center mt-12">
