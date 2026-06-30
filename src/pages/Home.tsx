@@ -273,14 +273,7 @@ export default function HomePage() {
             <button className="absolute top-5 right-5 h-12 w-12 grid place-items-center text-ivory hover:text-gold" aria-label="Close" onClick={() => setHomeFilm(null)}>✕</button>
             <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
               <div className="aspect-video w-full bg-black">
-                <iframe
-                  src={ytEmbed(FILMS[homeFilm].id)}
-                  title={FILMS[homeFilm].title}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
+                <YouTubePlayer id={FILMS[homeFilm].id} title={FILMS[homeFilm].title} />
               </div>
               <div className="text-center mt-4">
                 <a href={ytWatch(FILMS[homeFilm].id)} target="_blank" rel="noopener noreferrer" className="text-[11px] tracking-luxe uppercase text-gold hover:underline">
