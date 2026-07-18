@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { WEDDING, SITE } from "@/lib/site";
-const mrShan = `${import.meta.env.BASE_URL}images/mr-shan.jpg`;
+const mrShan = `${import.meta.env.BASE_URL}images/mr-shan.webp`;
 
 const TIMELINE = [
   { year: "2009", title: "Established", body: "Team Bee Creative Studios was founded with a single belief — every moment deserves to be remembered beautifully." },
