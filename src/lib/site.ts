@@ -8,38 +8,38 @@ export const IMG = {
 };
 
 export const WEDDING = [
-  `${AZ}/wedding/AJI00101.jpg`,
-  `${AZ}/wedding/AJI01043.jpg`,
-  `${AZ}/wedding/ARU04100.jpg`,
-  `${AZ}/wedding/ARU06076.JPG`,
-  `${AZ}/wedding/ARU08627.jpg`,
-  `${AZ}/wedding/ARU08654%20CC.jpg`,
-  `${AZ}/wedding/DSC08772.jpg`,
-  `${AZ}/wedding/DSC08821.jpg`,
-  `${AZ}/wedding/DSC08890.jpg`,
-  `${AZ}/wedding/DSC_7964%20CC.jpg`,
+  `${AZ}/wedding/AJI00101.webp`,
+  `${AZ}/wedding/AJI01043.webp`,
+  `${AZ}/wedding/ARU04100.webp`,
+  `${AZ}/wedding/ARU06076.webp`,
+  `${AZ}/wedding/ARU08627.webp`,
+  `${AZ}/wedding/ARU08654%20CC.webp`,
+  `${AZ}/wedding/DSC08772.webp`,
+  `${AZ}/wedding/DSC08821.webp`,
+  `${AZ}/wedding/DSC08890.webp`,
+  `${AZ}/wedding/DSC_7964%20CC.webp`,
 ];
 
 export const PRE_WEDDING = [
-  `${AZ}/pre-wedding/dsc08531.jpg`,
-  `${AZ}/pre-wedding/dsc08407.jpg`,
-  `${AZ}/pre-wedding/dsc08216.jpg`,
-  `${AZ}/pre-wedding/cam01704.jpg`,
-  `${AZ}/pre-wedding/aru02267.jpg`,
-  `${AZ}/pre-wedding/aru02130_.jpg`,
-  `${AZ}/pre-wedding/aru02073.jpg`,
+  `${AZ}/pre-wedding/DSC08531.webp`,
+  `${AZ}/pre-wedding/DSC08407.webp`,
+  `${AZ}/pre-wedding/DSC08216.webp`,
+  `${AZ}/pre-wedding/CAM01704.webp`,
+  `${AZ}/pre-wedding/ARU02267.webp`,
+  `${AZ}/pre-wedding/ARU02130_.webp`,
+  `${AZ}/pre-wedding/ARU02073.webp`,
   `${AZ}/pre-wedding/aru01944.jpg`,
 ];
 
 export const DESTINATION = [
-  `${AZ}/destination-wedding/ARU00954%20CC.jpg`,
-  `${AZ}/destination-wedding/ARU01217%20CC.jpg`,
+  `${AZ}/destination-wedding/ARU00954%20CC.webp`,
+  `${AZ}/destination-wedding/ARU01217%20CC.webp`,
 ];
 
 export const MATERNITY = [
-  `${AZ}/maternity-baby-shower/DSC07816.jpg`,
-  `${AZ}/maternity-baby-shower/DSC07983.jpg`,
-  `${AZ}/maternity-baby-shower/DSC08317.jpg`,
+  `${AZ}/maternity-baby-shower/DSC07816.webp`,
+  `${AZ}/maternity-baby-shower/DSC07983.webp`,
+  `${AZ}/maternity-baby-shower/DSC08317.webp`,
 ];
 
 // YouTube helpers
