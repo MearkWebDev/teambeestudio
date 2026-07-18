@@ -11,7 +11,7 @@ const AZ = "https://teambee.blob.core.windows.net";
 
 const slides = [
   {
-    image: `${AZ}/wedding/ARU08627.jpg`,
+    image: `${AZ}/wedding/ARU08627.webp`,
     eyebrow: "Wedding Photography · Coimbatore",
     title: "Every Wedding Has A Beautiful Story.\nWe Capture It Forever.",
     subtitle: "Luxury Wedding Photography & Cinematic Films in Coimbatore.",
@@ -19,7 +19,7 @@ const slides = [
     cta2: { label: "Book Your Wedding", to: "/contact?event=Wedding" },
   },
   {
-    image: `${AZ}/destination-wedding/ARU00954%20CC.jpg`,
+    image: `${AZ}/destination-wedding/ARU00954%20CC.webp`,
     eyebrow: "Destination Weddings",
     title: "Where Love Meets\nBeautiful Destinations",
     subtitle: "Destination Wedding Photography crafted with timeless elegance and cinematic storytelling.",
@@ -27,7 +27,7 @@ const slides = [
     cta2: { label: "Get a Quote", to: "/contact?event=Destination" },
   },
   {
-    image: `${AZ}/pre-wedding/dsc08531.jpg`,
+    image: `${AZ}/pre-wedding/DSC08531.webp`,
     eyebrow: "Pre Wedding Stories",
     title: "Before Forever Begins,\nLet's Capture Your Story",
     subtitle: "Creative Pre-Wedding Photography with natural emotions and cinematic frames.",

@@ -8,38 +8,38 @@ export const IMG = {
 };
 
 export const WEDDING = [
-  `${AZ}/wedding/AJI00101.jpg`,
-  `${AZ}/wedding/AJI01043.jpg`,
-  `${AZ}/wedding/ARU04100.jpg`,
-  `${AZ}/wedding/ARU06076.JPG`,
-  `${AZ}/wedding/ARU08627.jpg`,
-  `${AZ}/wedding/ARU08654%20CC.jpg`,
-  `${AZ}/wedding/DSC08772.jpg`,
-  `${AZ}/wedding/DSC08821.jpg`,
-  `${AZ}/wedding/DSC08890.jpg`,
-  `${AZ}/wedding/DSC_7964%20CC.jpg`,
+  `${AZ}/wedding/AJI00101.webp`,
+  `${AZ}/wedding/AJI01043.webp`,
+  `${AZ}/wedding/ARU04100.webp`,
+  `${AZ}/wedding/ARU06076.webp`,
+  `${AZ}/wedding/ARU08627.webp`,
+  `${AZ}/wedding/ARU08654%20CC.webp`,
+  `${AZ}/wedding/DSC08772.webp`,
+  `${AZ}/wedding/DSC08821.webp`,
+  `${AZ}/wedding/DSC08890.webp`,
+  `${AZ}/wedding/DSC_7964%20CC.webp`,
 ];
 
 export const PRE_WEDDING = [
-  `${AZ}/pre-wedding/dsc08531.jpg`,
-  `${AZ}/pre-wedding/dsc08407.jpg`,
-  `${AZ}/pre-wedding/dsc08216.jpg`,
-  `${AZ}/pre-wedding/cam01704.jpg`,
-  `${AZ}/pre-wedding/aru02267.jpg`,
-  `${AZ}/pre-wedding/aru02130_.jpg`,
-  `${AZ}/pre-wedding/aru02073.jpg`,
+  `${AZ}/pre-wedding/DSC08531.webp`,
+  `${AZ}/pre-wedding/DSC08407.webp`,
+  `${AZ}/pre-wedding/DSC08216.webp`,
+  `${AZ}/pre-wedding/CAM01704.webp`,
+  `${AZ}/pre-wedding/ARU02267.webp`,
+  `${AZ}/pre-wedding/ARU02130_.webp`,
+  `${AZ}/pre-wedding/ARU02073.webp`,
   `${AZ}/pre-wedding/aru01944.jpg`,
 ];
 
 export const DESTINATION = [
-  `${AZ}/destination-wedding/ARU00954%20CC.jpg`,
-  `${AZ}/destination-wedding/ARU01217%20CC.jpg`,
+  `${AZ}/destination-wedding/ARU00954%20CC.webp`,
+  `${AZ}/destination-wedding/ARU01217%20CC.webp`,
 ];
 
 export const MATERNITY = [
-  `${AZ}/maternity-baby-shower/DSC07816.jpg`,
-  `${AZ}/maternity-baby-shower/DSC07983.jpg`,
-  `${AZ}/maternity-baby-shower/DSC08317.jpg`,
+  `${AZ}/maternity-baby-shower/DSC07816.webp`,
+  `${AZ}/maternity-baby-shower/DSC07983.webp`,
+  `${AZ}/maternity-baby-shower/DSC08317.webp`,
 ];
 
 // YouTube helpers
@@ -55,30 +55,30 @@ export type Film = { id: string; title: string; category: string };
 
 // Curated from official Team Bee YouTube channel
 export const FILMS: Film[] = [
-  { id: "EPhh_ZbQdg8", title: "Cinematic Wedding Highlight", category: "Wedding" },
-  { id: "wROmiQJD2Dk", title: "Wedding Story Film", category: "Wedding" },
-  { id: "eh0YahMyN6s", title: "Pre-Wedding Story", category: "Pre Wedding" },
-  { id: "2n0wePDRof4", title: "Engagement Highlight", category: "Engagement" },
-  { id: "_lpzfJDXmoA", title: "Destination Wedding Film", category: "Destination" },
-  { id: "0fPvrrNCXkQ", title: "Reception Teaser", category: "Reception" },
-  { id: "b2I5-o0Ug9M", title: "Wedding Highlight", category: "Wedding" },
-  { id: "DjOYV3p-ojo", title: "Cinematic Wedding Film", category: "Wedding" },
-  { id: "XpWzmZR_nak", title: "Pre-Wedding Cinematic", category: "Pre Wedding" },
-  { id: "5VA-Cm1m9yM", title: "Wedding Highlight Film", category: "Wedding" },
-  { id: "WUodVJ-svuU", title: "Ceremony Highlights", category: "Ceremony" },
-  { id: "jtJHM-Q_7hQ", title: "Wedding Story", category: "Wedding" },
-  { id: "2hitAPEUbTE", title: "Engagement Story", category: "Engagement" },
-  { id: "dWpwaDgK3DU", title: "Destination Wedding Story", category: "Destination" },
-  { id: "kpXFnQ4gX6k", title: "Reception Film", category: "Reception" },
-  { id: "gwOW4lT57uE", title: "Wedding Highlight", category: "Wedding" },
-  { id: "4K04LhA2LCg", title: "Pre-Wedding Highlight", category: "Pre Wedding" },
-  { id: "VKsa27Mazv8", title: "Cinematic Wedding Story", category: "Wedding" },
-  { id: "f79sF_RhRXE", title: "Wedding Teaser", category: "Wedding" },
-  { id: "hFs9SYYSew0", title: "Ceremony Film", category: "Ceremony" },
-  { id: "8lDVtvboebA", title: "Wedding Film", category: "Wedding" },
-  { id: "EsFpa475oHA", title: "Engagement Cinematic", category: "Engagement" },
-  { id: "0rlXMtL_yH8", title: "Reception Highlight", category: "Reception" },
-  { id: "Zdwd6WjSy6Y", title: "Destination Story", category: "Destination" },
+  { id: "EPhh_ZbQdg8", title: "Love In Bloom — He Arrived, She Smiled & Forever Began", category: "Wedding" },
+  { id: "XpWzmZR_nak", title: "Aysha & Sharim — Grand Wedding Film", category: "Wedding" },
+  { id: "2hitAPEUbTE", title: "A True Love Symphony — Wedding Highlights of Sanfeer & Jumana", category: "Wedding" },
+  { id: "dWpwaDgK3DU", title: "Together By Grace — Wedding Highlights of John & Princy", category: "Wedding" },
+  { id: "gwOW4lT57uE", title: "Sherin Taj & Bhashith — Muslim Wedding Highlights", category: "Wedding" },
+  { id: "VKsa27Mazv8", title: "Hues of Romance — Wedding Highlights of Anwar & Sumaiya", category: "Wedding" },
+  { id: "Zdwd6WjSy6Y", title: "A Romantic Tales — Grand Wedding Highlights of Rithik & Abi", category: "Wedding" },
+  { id: "4K04LhA2LCg", title: "Forever Begins — Wedding Teaser of John & Princy", category: "Wedding" },
+  { id: "f79sF_RhRXE", title: "When Souls Align — Wedding Teaser of Anwar & Sumaiya", category: "Wedding" },
+  { id: "kpXFnQ4gX6k", title: "Dhinesh Rajaa & Vijayalakshmi — Kerala Outdoor Film", category: "Destination" },
+  { id: "5VA-Cm1m9yM", title: "Cascading Hearts — Pre-Wedding Highlight of Yogesh & Raksha", category: "Pre Wedding" },
+  { id: "WUodVJ-svuU", title: "Romantic Drizzle — Pre-Wedding Teaser of Yogesh & Raksha", category: "Pre Wedding" },
+  { id: "eh0YahMyN6s", title: "A Timeless Beginning of Sanjay & Rithika", category: "Engagement" },
+  { id: "_lpzfJDXmoA", title: "The Journey of Forever — Engagement Highlights of Gokulakrishnan & Sirpa", category: "Engagement" },
+  { id: "2n0wePDRof4", title: "A Timeless Promise — Yogesh & Raksha's Reception Highlight", category: "Reception" },
+  { id: "0fPvrrNCXkQ", title: "Magical Sangeet Night — Yogesh & Raksha Sangeet Highlight", category: "Ceremony" },
+  { id: "b2I5-o0Ug9M", title: "A Yellow Trinket — Haldi Highlight of Yogesh & Raksha", category: "Ceremony" },
+  { id: "EsFpa475oHA", title: "The Love Streak — Sangeet & Mehendi Highlights of Mansi & Kaushal", category: "Ceremony" },
+  { id: "DjOYV3p-ojo", title: "Tonsure & Ear Piercing Ceremony of Pranavika", category: "Ceremony" },
+  { id: "wROmiQJD2Dk", title: "Eppadi Vandhayo — Aira's Naming Ceremony", category: "Ceremony" },
+  { id: "jtJHM-Q_7hQ", title: "Tanvee — 1st Birthday Celebration", category: "Birthday" },
+  { id: "hFs9SYYSew0", title: "Rihansh Turns One — Birthday Highlight", category: "Birthday" },
+  { id: "8lDVtvboebA", title: "Thiyassh Turns One — Birthday Highlight", category: "Birthday" },
+  { id: "0rlXMtL_yH8", title: "Client's Testimonial — Gowtham & Vikashini", category: "Testimonial" },
 ];
 
 export const PHOTO_CATEGORIES = [
