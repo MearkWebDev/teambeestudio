@@ -1,7 +1,7 @@
 import { useSeo } from "@/lib/useSeo";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Camera, Film, Heart, Plane, Sparkles, Baby, Award, BookOpen, Plane as Drone, Gift, ArrowRight } from "lucide-react";
+import { Camera, Film, Heart, Plane, Sparkles, Baby, Award, Gift, ArrowRight } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { WEDDING } from "@/lib/site";
 
@@ -9,13 +9,11 @@ const SERVICES = [
   { icon: Camera, t: "Wedding Photography", d: "Candid storytelling and traditional coverage for every ritual.", event: "Wedding" },
   { icon: Film, t: "Wedding Cinematography", d: "Cinematic films and highlight reels you'll watch forever.", event: "Wedding" },
   { icon: Heart, t: "Pre Wedding", d: "Romantic, location-led shoots designed around your story.", event: "Pre Wedding" },
+  { icon: Award, t: "Engagement", d: "An intimate beginning to your wedding story — captured with elegance.", event: "Engagement" },
+  { icon: Gift, t: "Reception", d: "Glamorous, cinematic coverage of every speech, dance and smile.", event: "Reception" },
   { icon: Plane, t: "Destination Wedding", d: "Coastal, palace and hill-station weddings — anywhere your love takes you.", event: "Destination" },
   { icon: Sparkles, t: "Maternity", d: "Soft, intimate portraits celebrating the journey to parenthood.", event: "Maternity" },
   { icon: Baby, t: "Baby Shower", d: "Joyful, heartfelt coverage of your baby shower celebrations.", event: "Baby Shower" },
-  { icon: Gift, t: "Reception", d: "Glamorous, cinematic coverage of every speech, dance and smile.", event: "Reception" },
-  { icon: Award, t: "Engagement", d: "An intimate beginning to your wedding story — captured with elegance.", event: "Engagement" },
-  { icon: BookOpen, t: "Album Design", d: "Hand-crafted heirloom albums printed on archival fine-art paper.", event: "Album" },
-  { icon: Drone, t: "Drone Coverage", d: "Sweeping aerial cinematography for a true cinematic scale.", event: "Drone" },
 ];
 
 export default function ServicesPage() {
