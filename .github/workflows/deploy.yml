@@ -1,65 +1,75 @@
 name: Deploy teambeestudios.com to Hostinger
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
+          node-version: 20
+          cache: npm
+
+      - name: Clean previous installation
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+          npm cache clean --force
 
       - name: Install dependencies
         run: |
-          rm -f package-lock.json
-          npm install
+          npm install --include=optional
 
-      - name: Build React app
+      - name: Verify Tailwind Oxide
+        run: |
+          npm ls @tailwindcss/oxide || true
+
+      - name: Build React App
         run: npm run build
         env:
           CI: false
 
       - name: Verify build output
         run: |
-          if [ ! -d "dist" ]; then
-            echo "Build failed - dist directory not found"
-            exit 1
-          fi
-          echo "Build successful"
-          ls -la dist/
+          test -d dist
+          ls -lah dist
 
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.8.0
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add server to known hosts
+      - name: Disable Host Key Checking
         run: |
           mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "Host *" > ~/.ssh/config
-          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
-          echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+          cat > ~/.ssh/config <<EOF
+          Host *
+            StrictHostKeyChecking no
+            UserKnownHostsFile=/dev/null
+          EOF
           chmod 600 ~/.ssh/config
 
-      - name: Deploy to teambeestudios.com
+      - name: Deploy to Hostinger
         run: |
           rsync -avz --delete \
             -e "ssh -p ${{ secrets.SSH_PORT }}" \
-            --exclude '.git*' \
-            --exclude 'node_modules' \
+            --exclude ".git*" \
+            --exclude "node_modules" \
             dist/ \
             ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}
 
-      - name: Verify deployment
+      - name: Verify Deployment
         run: |
           ssh -p ${{ secrets.SSH_PORT }} \
-            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} \
-            "ls -la ${{ secrets.DEPLOY_PATH }}"
+          ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} \
+          "ls -lah '${{ secrets.DEPLOY_PATH }}'"
