@@ -6,7 +6,7 @@ import { SiteLayout, PageHero } from "@/components/site/Layout";
 import { YouTubePlayer } from "@/components/site/YouTubePlayer";
 import { FILMS, ytThumb, ytThumbFallback, ytWatch } from "@/lib/site";
 
-const CATEGORIES = ["All", "Wedding", "Pre Wedding", "Engagement", "Reception", "Ceremony", "Destination", "Birthday", "Testimonial"];
+const CATEGORIES = ["All", "Wedding", "Pre Wedding", "Engagement", "Reception", "Ceremony", "Destination"];
 
 export default function FilmsPage() {
   const [filter, setFilter] = useState("All");
