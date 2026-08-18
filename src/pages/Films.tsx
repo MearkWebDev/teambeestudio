@@ -139,6 +139,7 @@ export default function FilmsPage() {
                 </div>
                 <div className="pt-5">
                   <div className="text-[10px] tracking-luxe uppercase text-gold mb-2">{f.category}</div>
+                  {f.couple && <div className="font-serif text-lg text-ivory/90">{f.couple}</div>}
                   <h3 className="font-serif text-xl text-ivory group-hover:text-gold transition-colors">{f.title}</h3>
                 </div>
               </motion.button>
