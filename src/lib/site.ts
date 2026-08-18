@@ -51,7 +51,7 @@ export const ytOembed = (id: string) =>
   `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`;
 export const ytWatch = (id: string) => `https://youtu.be/${id}`;
 
-export type Film = { id: string; title: string; category: string };
+export type Film = { id: string; title: string; category: string; couple?: string };
 
 // Curated from official Team Bee YouTube channel
 export const FILMS: Film[] = [
@@ -71,6 +71,16 @@ export const FILMS: Film[] = [
   { id: "b2I5-o0Ug9M", title: "A Yellow Trinket — Haldi Highlight of Yogesh & Raksha", category: "Ceremony" },
   { id: "rD4it41pi6Q", title: "Taj Destination Wedding — Akhil & Hitu", category: "Destination" },
   { id: "Fy6yLWKzKsA", title: "A Twine of True Love — Bangalore Destination Wedding of Sonal & Kaushal", category: "Destination" },
+  { id: "bL5EcaVsUI4", title: "A Romantic Ripple Of Sanjay & Rithika", category: "Wedding", couple: "Sanjay & Sai Rithika" },
+  { id: "RHSieOWyl4o", title: "A Rhyme Of Love — Wedding Film", category: "Wedding", couple: "Hanif & Sameena" },
+  { id: "UHFA0StNICQ", title: "The Wedding Dew — Grand Wedding & Reception Highlights of Vishnu & Priya", category: "Wedding", couple: "Vishnu & Priya" },
+  { id: "3IeB8K43MPA", title: "A Queen's Fairytale — Grand Wedding Film of Ameen & Fraiza", category: "Wedding", couple: "Ameen & Fraiza" },
+  { id: "AlUa-sRapVM", title: "Hariprasath & Sreepriya — Kerala Wedding Highlights", category: "Wedding", couple: "Hariprasath & Sripriya" },
+  { id: "GDkunx83CNQ", title: "Sunil & Pooja — Bangalore Wedding Highlights", category: "Wedding", couple: "Sunil & Pooja" },
+  { id: "3A7gHOE_J3g", title: "Anand & Swara — Wedding Film Teaser", category: "Wedding", couple: "Anand & Swara" },
+  { id: "bKQq1XwPM24", title: "Mohan & Govarthini — Wedding Film", category: "Wedding", couple: "Mohan & Govarthini" },
+  { id: "d38QOKtMlWU", title: "Karthick & Preethi — Hindu Wedding Highlights", category: "Wedding", couple: "Karthick & Preethi" },
+  { id: "8PZdxErgUik", title: "A Beautiful Brahmin Wedding Film of Ramalingam & Vaishali", category: "Wedding", couple: "Ramalingam & Vaishali" },
 ];
 
 export const PHOTO_CATEGORIES = [
