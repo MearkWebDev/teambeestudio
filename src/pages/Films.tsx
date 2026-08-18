@@ -160,6 +160,9 @@ export default function FilmsPage() {
             </div>
             <div className="text-center mt-4">
               <div className="text-[11px] tracking-luxe uppercase text-gold">{FILMS[playing].category}</div>
+              {FILMS[playing].couple && (
+                <div className="font-serif text-xl text-ivory/90 mt-1">{FILMS[playing].couple}</div>
+              )}
               <div className="font-serif text-2xl text-ivory mt-1">{FILMS[playing].title}</div>
               <a href={ytWatch(FILMS[playing].id)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-[11px] tracking-luxe uppercase text-gold/80 hover:text-gold hover:underline">
                 Trouble playing? Watch on YouTube ↗
