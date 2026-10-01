@@ -1,7 +1,7 @@
 // Azure Blob CDN base
 const AZ = "https://teambee.blob.core.windows.net";
 
-// Logo served from public/ so it works on Lovable, dev, and GitHub Pages subpaths
+// Logo served from public/ so it works in preview, dev, and GitHub Pages subpaths
 export const IMG = {
   logo: `${import.meta.env.BASE_URL}images/logo.png`,
   logoWhite: `${import.meta.env.BASE_URL}images/logo-white.png`,
