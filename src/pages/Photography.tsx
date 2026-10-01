@@ -24,7 +24,7 @@ export default function PhotographyPage() {
     title: `${cat.label} Photography Coimbatore — Team Bee Creative Studios`,
     description: `${cat.label} photography in Coimbatore and across Tamil Nadu — candid storytelling, cinematic frames and timeless memories by Team Bee Creative Studios.`,
     image: images[0],
-    canonical: `/photography?cat=${cat.key}`,
+    canonical: "/photography",
   });
 
   useEffect(() => {
