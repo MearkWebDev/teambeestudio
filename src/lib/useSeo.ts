@@ -8,7 +8,7 @@ type Seo = {
   jsonLd?: object | object[];
 };
 
-const SITE_URL = "https://teambeestudio.lovable.app";
+const SITE_URL = "https://teambeestudios.com";
 
 function setMeta(selector: string, attr: string, value: string) {
   let el = document.head.querySelector<HTMLMetaElement>(selector);

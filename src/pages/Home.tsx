@@ -68,7 +68,7 @@ export default function HomePage() {
         telephone: SITE.phone,
         email: SITE.email,
         address: { "@type": "PostalAddress", streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`, addressLocality: "Coimbatore", addressRegion: "Tamil Nadu", postalCode: "641002", addressCountry: "IN" },
-        url: "https://teambeestudio.lovable.app/",
+        url: "https://teambeestudios.com/",
         founder: "Mr. Shan",
         foundingDate: "2009",
         priceRange: "₹₹₹",
