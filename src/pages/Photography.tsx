@@ -18,7 +18,9 @@ export default function PhotographyPage() {
   }, [params]);
 
   const cat = useMemo(() => PHOTO_CATEGORIES.find((c) => c.key === active) || PHOTO_CATEGORIES[0], [active]);
-  const images = cat.images;
+  const images = cat.images as readonly string[];
+  const [visible, setVisible] = useState(18);
+  useEffect(() => setVisible(18), [active]);
 
   useSeo({
     title: `${cat.label} Photography Coimbatore — Team Bee Creative Studios`,
@@ -76,7 +78,7 @@ export default function PhotographyPage() {
       <section className="px-6 pb-32">
         <div className="mx-auto max-w-[1500px]">
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-            {images.map((src, i) => (
+            {images.slice(0, visible).map((src, i) => (
               <motion.button
                 key={src}
                 onClick={() => setLightbox(i)}
@@ -84,13 +86,27 @@ export default function PhotographyPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: (i % 6) * 0.05 }}
-                className="block w-full mb-4 break-inside-avoid overflow-hidden group relative"
+                className="block w-full mb-4 break-inside-avoid overflow-hidden group relative bg-card/30"
               >
-                <img src={src} alt={`${cat.label} ${i + 1}`} loading="lazy" className="w-full h-auto transition-transform duration-[1500ms] group-hover:scale-110" />
+                <img
+                  src={src}
+                  alt={`${cat.label} photography by Team Bee Creative Studios ${i + 1}`}
+                  loading={i < 3 ? "eager" : "lazy"}
+                  decoding="async"
+                  onError={(e) => { const b = e.currentTarget.closest("button"); if (b) (b as HTMLElement).style.display = "none"; }}
+                  className="w-full h-auto transition-transform duration-[1500ms] group-hover:scale-110"
+                />
                 <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/30 transition-colors" />
               </motion.button>
             ))}
           </div>
+          {visible < images.length && (
+            <div className="text-center mt-10">
+              <button onClick={() => setVisible((v) => v + 18)} className="px-10 py-4 border border-gold text-gold text-[11px] uppercase tracking-luxe hover:bg-gold hover:text-ink transition-all">
+                Load More ({images.length - visible} remaining)
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
