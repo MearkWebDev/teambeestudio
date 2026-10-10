@@ -1,5 +1,8 @@
 // Azure Blob CDN base
+import { WEDDING_EXTRA, PRE_WEDDING_EXTRA, DESTINATION_EXTRA } from "./gallery-extra";
+
 const AZ = "https://teambee.blob.core.windows.net";
+const merge = (a: string[], b: string[]) => Array.from(new Set([...a, ...b]));
 
 // Logo served from public/ so it works in preview, dev, and GitHub Pages subpaths
 export const IMG = {
@@ -84,9 +87,9 @@ export const FILMS: Film[] = [
 ];
 
 export const PHOTO_CATEGORIES = [
-  { key: "wedding", label: "Wedding", images: WEDDING, blurb: "Sacred rituals, intimate glances, the joy of two families becoming one." },
-  { key: "pre-wedding", label: "Pre Wedding", images: PRE_WEDDING, blurb: "Romantic, story-driven shoots designed around you as a couple." },
-  { key: "destination", label: "Destination", images: DESTINATION, blurb: "Weddings beyond borders — coastlines, palaces, hill stations." },
+  { key: "wedding", label: "Wedding", images: merge(WEDDING, WEDDING_EXTRA), blurb: "Sacred rituals, intimate glances, the joy of two families becoming one." },
+  { key: "pre-wedding", label: "Pre Wedding", images: merge(PRE_WEDDING, PRE_WEDDING_EXTRA), blurb: "Romantic, story-driven shoots designed around you as a couple." },
+  { key: "destination", label: "Destination", images: merge(DESTINATION, DESTINATION_EXTRA), blurb: "Weddings beyond borders — coastlines, palaces, hill stations." },
   { key: "maternity", label: "Maternity", images: MATERNITY, blurb: "Soft light, tender moments — celebrating the journey to parenthood." },
 ] as const;
 
